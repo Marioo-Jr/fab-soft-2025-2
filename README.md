@@ -40,7 +40,12 @@ Lexical notebook.
   - Ambiente de DESENVOLVIMENTO (javac.exe) compilador
 
 - COMPILAÇÃO
-  1) Escreve um programa em java (arquivo.java)
-  2) Compilação arquivo.java -> javac.exe -> bytecode arquivo.class
-- EXECUÇÃO
-  3) Passar .class -> java.exe (JVM) -> ling máquina
+
+	- Escreve um programa em java (arquivo.java)
+	- Compilação arquivo.java -> javac.exe -> bytecode arquivo.class
+	- EXECUÇÃO 3 Passar .class -> java.exe (JVM) -> ling máquina
+
+- VSCode
+
+VSCode
+	- Java Extension Packava.exe (JVM) -> ling máquina
