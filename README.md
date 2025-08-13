@@ -4,7 +4,7 @@
 Nome: Mario Sergio Minas Junior
 
 
-## Proposta
+## Propostas
 
 Lexical notebook.
 
@@ -27,6 +27,63 @@ Lexical notebook.
 	- Modos de estudos
 		- Metodo quiz
 		- Metodo repeticao espacada
+
+
+##
+Sistema de Controle de Condomínios 
+
+- Cadastro de Moradores
+
+	Inserir, editar e excluir moradores (nome, apartamento, bloco, telefone, e-mail).
+
+- Cadastro de Áreas Comuns
+
+	Criar e gerenciar áreas comuns (salão de festas, churrasqueira, academia, etc.).
+
+- Reserva de Áreas Comuns
+
+	Moradores podem solicitar reserva de áreas disponíveis em datas e horários específicos.
+
+	Sistema bloqueia horários já reservados.
+
+- Registro de Ocorrências
+
+	Moradores registram ocorrências (barulho, manutenção, segurança), com título, descrição e fotos opcionais.
+
+	Síndico e/ou administradores podem atualizar status da ocorrência (pendente, em andamento, resolvida).
+
+- Envio de Comunicados
+
+	Síndico envia avisos para todos ou grupos de moradores.
+
+	Moradores recebem e visualizam no sistema (e opcionalmente por e-mail).
+
+- Histórico de Reservas e Ocorrências
+
+	Morador pode consultar tudo o que já registrou ou reservou.
+
+- Autenticação de Usuários
+
+	Login separado para moradores e administradores (com permissões diferentes).
+
+- Vagas de Garagem
+
+	Visualização e solicitação de vagas temporárias para visitantes.
+
+
+- Controle de Funcionários
+
+	Cadastro e escalas de porteiros, zeladores, faxineiros, etc.
+
+- Gestão de Manutenção Preventiva
+
+	Agenda para manutenção de elevadores, bombas d’água, portões, etc.
+
+- Relatórios e Estatísticas
+
+	Relatório de reservas, ocorrências mais comuns, inadimplência, etc.
+
+
 
 
 ## Aula 05/08
