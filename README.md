@@ -49,3 +49,15 @@ Lexical notebook.
 
 VSCode
 	- Java Extension Packava.exe (JVM) -> ling máquina
+
+
+ ## Historias 12/08.
+
+ - Como usuario eu gostaria de compartilhar meus vocabularios com outros alunos.
+ - Como usuario eu gostaria poder fazer flash cards com o vocabulario novo.
+ - como usuario eu gostaria de poder ter diferentes formas de estudar o vocabulario
+ - como usuario eu gostaria de poder ver o vocabulario que meu colega adicionou
+ - como usuario eu gostaria de poder adicionar meus amigos na plataforma
+ - como usuario eu gostaria de poder criar grupos na plataforma.
+ - como usuario eu gostaria de poder criar pastas na plataforma.
+ 
