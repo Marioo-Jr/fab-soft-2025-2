@@ -43,7 +43,7 @@ Sistema de Controle de Condomínios
 
 - Cadastro de Moradores
 
-	Inserir, editar e excluir moradores (nome, apartamento, bloco, telefone, e-mail).
+	Inserir, editar e excluir moradores.
 
 - Cadastro de Áreas Comuns
 
@@ -61,11 +61,6 @@ Sistema de Controle de Condomínios
 
 	Síndico e/ou administradores podem atualizar status da ocorrência (pendente, em andamento, resolvida).
 
-- Envio de Comunicados
-
-	Síndico envia avisos para todos ou grupos de moradores.
-
-	Moradores recebem e visualizam no sistema (e opcionalmente por e-mail).
 
 - Histórico de Reservas e Ocorrências
 
@@ -75,29 +70,27 @@ Sistema de Controle de Condomínios
 
 	Login separado para moradores e administradores (com permissões diferentes).
 
-- Vagas de Garagem
 
-	Visualização e solicitação de vagas temporárias para visitantes.
-
-
-- Controle de Funcionários
+- Controle de Funcionários //
 
 	Cadastro e escalas de porteiros, zeladores, faxineiros, etc.
 
-- Gestão de Manutenção Preventiva
+- Gestão de Manutenção Preventiva // 
 
 	Agenda para manutenção de elevadores, bombas d’água, portões, etc.
 
-- Relatórios e Estatísticas
+- Relatórios e Estatísticas //
 
 	Relatório de reservas, ocorrências mais comuns, inadimplência, etc.
 
 ### Historias 
 
-Como usuario eu gostaria de poder entrar em contato com o responsavel de maneira facil e rapida
-como usuario eu gostaria de poder agendar o uso de certos locais de forma facil e rapida
-como usuario eu gostaria de receber notificacoes de coisas importantes
-como usuario eu gostaria de 
+- Como usuario eu gostaria de poder entrar em contato com o responsavel de maneira facil e rapida
+- como usuario eu gostaria de poder agendar o uso de certos locais de forma facil e rapida
+- como usuario eu gostaria de receber notificacoes de coisas importantes
+- como usuario eu gostaria de inserir deletar ou editar os dados de um usuario.
+- como usuario eu gostaria de ver um historico de lugares que eu aluguei.
+- como usuario eu gostaria de poder registrar ocorrencias.
 
 
 
