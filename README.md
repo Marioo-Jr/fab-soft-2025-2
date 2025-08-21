@@ -116,7 +116,111 @@ Sistema de Controle de Condomínios
 
 VSCode
 	- Java Extension Packava.exe (JVM) -> ling máquina
+#
 
+### aula  20/08
 
+```mermaid
+---
+title: Diagrama de Entidades
+---
+classDiagram
+    Morador "1" --> "*" LocalAlugar
+    Morador "*" --> "*" RegistroOcorrencia
+    
+
+    namespace entity {
+      class Morador{
+          -id : long
+          -nome : String
+          -endereco : String
+          -telefone : String
+          -dataNascimento: Date
+
+          +getId()long
+          +setId(id:long) void
+          +getNome() String
+          +setNome(nome:String) void
+          +getEndereco() String
+          +setEndereco(endereco:String) void
+          +getTelefone() String
+          +setTelefone(telefone:String) void
+          +getDataNascimento() Date
+          +setDataNascimento(dataNascimento:Date) void
+      }
+      class LocalAlugar{
+          -id : long
+          -nome : String
+          -descricao : String
+          -estaAlugado : Bool
+          -data : date
+
+          +getId():long
+          +setId(id:long) void
+          +getNome() String
+          +setNome(nome:String) void
+          +getDescricao() String
+          +setDescricao(descricao:String) void
+          +getEstaAlugado() Bool
+          +setEstaAlugado(estaAlugado:Bool) void
+          +getData() date
+          +setDate(data:date) void
+          
+
+      }
+      class RegistroOcorrencia{
+          -id : long
+          -nomeLocal : String
+          -descricao : String
+          -data : date
+          -moradorReport : String
+        
+          +getId() long
+          +setId(id:long) void
+          +getNomeLocal() String
+          +setNome(nomeLocal:String) void
+          +getDescricao() String
+          +setDescricao(descricao:String) void
+          +getData() date
+          +setDate(data:date) void
+          +getMoradorReport() String
+          +setMoradorReport(moradorReport:String) void
+
+      }
+
+      class HistoricoReserva{
+        -id : long
+        -nomeArea : String
+        -dataAlugado : date
+        -moradorRented : String
+
+        +getId() long
+        +setId(id:long) void
+        +getNomeArea()  String
+        +setNomeArea(nomeArea: String) void
+        +getDataAlugado() date
+        +setDataAlugado(dataAlugado: date) void
+        +getMoradorRented() String
+        +setMoradorRented (moradorRented:String) void 
+
+      }
+      class HistoricoDeOcorrencia{
+        -id : long
+        -nomeArea : String
+        -dataAlugado : date
+        -moradorReport : String
+
+        +getId() long
+        +setId(id:long) void
+        +getNomeArea()  String
+        +setNomeArea(nomeArea: String) void
+        +getDataAlugado() date
+        +setDataAlugado(dataAlugado: date) void
+        +getMoradorReport() String
+        +setMoradorReport (moradorReport:String) void 
+
+      }
  
- 
+      
+      
+    }
