@@ -1,14 +1,25 @@
 package br.univille.entity;
 
+import java.util.ArrayList;
+
 public class Cliente {
 
     private String nome;
     private int idade;
     private float peso;
 
+    private ArrayList<Pokemon> listaPokemon = 
+        new ArrayList<Pokemon>();
+
     // private -> modificador de acesso
     // encapsulamento
 
+    public ArrayList<Pokemon> getListaPokemon() {
+        return listaPokemon;
+    }
+    public void setListaPokemon(ArrayList<Pokemon> listaPokemon) {
+        this.listaPokemon = listaPokemon;
+    }
     private Cidade cidade;
 
 
