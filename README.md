@@ -125,11 +125,48 @@ VSCode
 title: Diagrama de Entidades
 ---
 classDiagram
-    Locatario "1" --> "*" LocalAlugar
+    Locatario "1" --> "*" Locacao
+    Locacao "*" --> "1" Proprietario
+    Locacao "1" --> "1" Imovel
+    Condominio "*" --> "1" Imovel
+    Condominio "1" --> "*" Espaco
+    Reserva "1" --> "*" Espaco
+    Reserva "1" --> "*" Locatario
+
+    Locacao ..> StatusLocacao
+    Imovel ..> StatusImovel
+    Espaco ..> StatusEspaco
+    Reserva ..> StatusReserva
+
     
     
 
     namespace entity {
+      class Proprietario{
+
+        -id : Long
+        -nome : String
+        -cpf : String
+        -dataNascimento : LocalDate
+        -email : String
+        -telefone : String
+
+        +getId()long
+        +setId(id:long) void
+        +getNome() String
+        +setNome(nome:String) void
+        +getCpf() String
+        +setCpf(cpf:String) void
+        +getEmail() String
+        +setEmail(email:String) void
+        +getTelefone() String
+        +setTelefone(telefone:String) void
+        +getDataNascimento() LocalDate
+        +setDataNascimento(LocalDate:Date) void
+        
+
+      }
+
       class Locatario{
           -id : long
           -nome : String
@@ -158,7 +195,7 @@ classDiagram
         -dataInicio : LocalDtate
         -dataFim: LocalDate
         -valorAluguel : Double
-        -status : Enum "Ativa","Encerrada","Inadimplente"
+        -statusLocacao : Enum "Ativa","Encerrada","Inadimplente"
 
         +getId()long
         +setId(id:long) void
@@ -172,8 +209,8 @@ classDiagram
         +setDataFim(dataFim:LocalDate) void
         +getValorAluguel() Double
         +setValorAlguel(valorAluguel:Double) void
-        +getStatus() Enum
-        +setStatus(status:Enum) void
+        +getStatusLocacao() Enum
+        +setStatus(StatusLocacao:Enum) void
 
       }
 
@@ -204,8 +241,9 @@ classDiagram
       -qtdeQuartos : Integer
       -qtdeBanheiros : Integer
       -vagaGaragem : Integer
-      -status : Enum "Ocupado","Disponivel","Manutencao"
+      -statusImovel : Enum "Ocupado","Disponivel","Manutencao"
       -condominio : Condominio
+      -proprietario : Proprietario
 
       +getId() Long
       +setId(id:Long) void
@@ -219,15 +257,90 @@ classDiagram
       +serQtdeBanheiros(qtdeBanheiros:Integer) void
       +getVagaGaragem() Integer
       +setVagaGaragem(vagaGaragem:Integer) void
-      +getStatus() Enum
-      +setStatus(status:Enum) void
+      +getStatusImovel() Enum
+      +setStatusImovel(statusImovel:Enum) void
       +getCondominio() Condominio
-      +setCondominio(condominio:Condominio) void    
+      +setCondominio(condominio:Condominio) void
+      +getProprietario() Proprietario
+      +setProprietario(proprietario:Proprietario) void    
 
  }    
       class Espaco {
-        
+        -id : Long
+        -nome : String
+        -descricao : String
+        -capacidadeMaxima : Integer
+        -valorReserva : Double
+        -statusEspaco : Enum
+        condominio : Condominio
+
+        +getId() Long
+        +setId(id:Long) void
+        +getNome() String
+        +setNome(nome:String) void
+        +getDescricao() String
+        +setDescricao(descricao:String) void
+        +getCapacidadeMaxima() Integer
+        +setCapacidadeMaxima(capacidadeMaxima:Integer) void
+        +getStatusEspaco() Enum
+        +setStatusEspaco(statusEspaco:Enum) void
+        +getCondominio() Condominio
+        +setCondominio(condominio:Condominio) void
       }
-      
-      
+
+      class Reserva{
+
+        -id : Long
+        -espaco : Espaco
+        -locatario : Locatario
+        -dataEvento : LocalTime
+        -valorTotal : Double
+        -observacoes : String
+        -StatusReserva : Enum
+
+        +getId() Long
+        +setId(id:Long) void
+        +getEspaco() Espaco
+        +setEspaco(espaco:Espaco) void
+        +getLocatario() Locatario
+        +setLocatario(locatario:Locatario) void
+        +getDataEvento() LocalTime
+        +setDataEvento(dataEvento:LocalTime) void
+        +getValorTotal() Double
+        +setValorTotal(valorTotal:Double) void
+        +getObservacoes() String
+        +setObservacoes(observacoes:String) void
+        +getStatusReserva() Enum
+        +setStatusReserva(statusReserva:Enum) void
+
+      }
+
+  
+     class StatusLocacao {
+        <<enum>>
+        ATIVA
+        ENCERRADA
+        INADIMPLENTE
+    }
+
+    class StatusImovel {
+        <<enum>>
+        OCUPADO
+        DISPONIVEL
+        MANUTENCAO
+    }
+
+    class StatusEspaco {
+        <<enum>>
+        DISPONIVEL
+        MANUTENCAO
+    }
+
+    class StatusReserva {
+        <<enum>>
+        PENDENTE
+        CONFIRMADA
+        CANCELADA
+    }
+
     }
