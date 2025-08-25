@@ -125,102 +125,109 @@ VSCode
 title: Diagrama de Entidades
 ---
 classDiagram
-    Morador "1" --> "*" LocalAlugar
-    Morador "*" --> "*" RegistroOcorrencia
+    Locatario "1" --> "*" LocalAlugar
+    
     
 
     namespace entity {
-      class Morador{
+      class Locatario{
           -id : long
           -nome : String
+          -cpf : String 
           -endereco : String
           -telefone : String
-          -dataNascimento: Date
+          -dataNascimento: LocalDate
 
           +getId()long
           +setId(id:long) void
           +getNome() String
           +setNome(nome:String) void
+          +getCpf() String
+          +setCpf(cpf:String) void
           +getEndereco() String
           +setEndereco(endereco:String) void
           +getTelefone() String
           +setTelefone(telefone:String) void
-          +getDataNascimento() Date
-          +setDataNascimento(dataNascimento:Date) void
+          +getDataNascimento() LocalDate
+          +setDataNascimento(LocalDate:Date) void
       }
-      class LocalAlugar{
-          -id : long
-          -nome : String
-          -descricao : String
-          -estaAlugado : Bool
-          -data : date
+      class Locacao{
+        -id : Long
+        -locatario : Locatario
+        -imovel : Imovel
+        -dataInicio : LocalDtate
+        -dataFim: LocalDate
+        -valorAluguel : Double
+        -status : Enum "Ativa","Encerrada","Inadimplente"
 
-          +getId():long
-          +setId(id:long) void
-          +getNome() String
-          +setNome(nome:String) void
-          +getDescricao() String
-          +setDescricao(descricao:String) void
-          +getEstaAlugado() Bool
-          +setEstaAlugado(estaAlugado:Bool) void
-          +getData() date
-          +setDate(data:date) void
-          
+        +getId()long
+        +setId(id:long) void
+        +getLocatario() Locatario
+        +setLocatario(locatario:Locatario) void
+        +getImovel() Imovel
+        +setImovel(imovel:Imovel) void
+        +getDataInicio() LocalDate
+        +setDataInicio(dataInicio:LocalDate) void
+        +getDataFim() LocalDate
+        +setDataFim(dataFim:LocalDate) void
+        +getValorAluguel() Double
+        +setValorAlguel(valorAluguel:Double) void
+        +getStatus() Enum
+        +setStatus(status:Enum) void
 
       }
-      class RegistroOcorrencia{
-          -id : long
-          -nomeLocal : String
-          -descricao : String
-          -data : date
-          -moradorReport : String
+
+      class Condominio{
+        -id : Long
+        -nome : String
+        -endereco : String
+        -cnpj : String
+        -sindico : Locatario
+
+        +getId() Long
+        +setId(id:Long) void
+        +getNome() String
+        +setNome(nome:String) void
+        +getEndereco() String
+        +setEndereco(endereco:String) void
+        +getCnpj() String
+        +setCnpj(cnpj:String) void
+        +getSindico() Locatario
+        +setSindico(sindico:Locatario) void
+
+      }
+
+      class Imovel{
+      -id : Long
+      -numero : String
+      -bloco : String
+      -qtdeQuartos : Integer
+      -qtdeBanheiros : Integer
+      -vagaGaragem : Integer
+      -status : Enum "Ocupado","Disponivel","Manutencao"
+      -condominio : Condominio
+
+      +getId() Long
+      +setId(id:Long) void
+      +getNumero() String
+      +setNumero(numero:String) void
+      +getBloco() String
+      +setBloco(bloco:String) void
+      +getQtdeQuartos() Integer
+      +setQtdeQuartos(qtdeQuartos:Integer) void
+      +getQtdeBanheiros() Integer
+      +serQtdeBanheiros(qtdeBanheiros:Integer) void
+      +getVagaGaragem() Integer
+      +setVagaGaragem(vagaGaragem:Integer) void
+      +getStatus() Enum
+      +setStatus(status:Enum) void
+      +getCondominio() Condominio
+      +setCondominio(condominio:Condominio) void    
+
+ }    
+      class Espaco {
         
-          +getId() long
-          +setId(id:long) void
-          +getNomeLocal() String
-          +setNome(nomeLocal:String) void
-          +getDescricao() String
-          +setDescricao(descricao:String) void
-          +getData() date
-          +setDate(data:date) void
-          +getMoradorReport() String
-          +setMoradorReport(moradorReport:String) void
-
       }
-
-      class HistoricoReserva{
-        -id : long
-        -nomeArea : String
-        -dataAlugado : date
-        -moradorRented : String
-
-        +getId() long
-        +setId(id:long) void
-        +getNomeArea()  String
-        +setNomeArea(nomeArea: String) void
-        +getDataAlugado() date
-        +setDataAlugado(dataAlugado: date) void
-        +getMoradorRented() String
-        +setMoradorRented (moradorRented:String) void 
-
-      }
-      class HistoricoDeOcorrencia{
-        -id : long
-        -nomeArea : String
-        -dataAlugado : date
-        -moradorReport : String
-
-        +getId() long
-        +setId(id:long) void
-        +getNomeArea()  String
-        +setNomeArea(nomeArea: String) void
-        +getDataAlugado() date
-        +setDataAlugado(dataAlugado: date) void
-        +getMoradorReport() String
-        +setMoradorReport (moradorReport:String) void 
-
-      }
- 
       
       
     }
