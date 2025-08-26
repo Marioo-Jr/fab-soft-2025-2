@@ -125,13 +125,14 @@ VSCode
 title: Diagrama de Entidades
 ---
 classDiagram
-    Locatario "1" --> "*" Locacao
-    Locacao "*" --> "1" Proprietario
     Locacao "1" --> "1" Imovel
+    Locacao "*" -->"1" Locatario
+    Locacao "*" --> "1" Proprietario
+    Espaco "*" --> "1" Condominio
+    Reserva "*" --> "1" Espaco
+    Reserva "*" --> "1" Locatario
     Condominio "*" --> "1" Imovel
-    Condominio "1" --> "*" Espaco
-    Reserva "1" --> "*" Espaco
-    Reserva "1" --> "*" Locatario
+    
 
     Locacao ..> StatusLocacao
     Imovel ..> StatusImovel
