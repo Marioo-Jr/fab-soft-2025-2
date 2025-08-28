@@ -32,8 +32,8 @@ public class Imovel {
     @OneToMany(mappedBy = "imovel_bd")
     private List<Condominio> condominio_bd = new ArrayList<>();
 
-    @OneToOne(mappedBy = "Imovel", cascade = CascadeType.ALL)
-    private Locatario locatario_bd;
+    @OneToOne(mappedBy = "imovel_bd", cascade = CascadeType.ALL)
+    private Locacao locacao_bd;
 
 
 
@@ -130,18 +130,7 @@ public class Imovel {
     
 
 
-    public Locatario getLocatario_bd() {
-        return locatario_bd;
-    }
-
-
-
-
-
-    public void setLocatario_bd(Locatario locatario_bd) {
-        this.locatario_bd = locatario_bd;
-    }
-
+    
 
 
     public Condominio getCondominio() {
@@ -164,6 +153,18 @@ public class Imovel {
 
     public void setCondominio_bd(List<Condominio> condominio_bd) {
         this.condominio_bd = condominio_bd;
+    }
+
+
+
+    public Locacao getLocacao_bd() {
+        return locacao_bd;
+    }
+
+
+
+    public void setLocacao_bd(Locacao locacao_bd) {
+        this.locacao_bd = locacao_bd;
     }
 
     

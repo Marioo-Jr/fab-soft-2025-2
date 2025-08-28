@@ -28,12 +28,12 @@ public class Locacao {
 
 
     @ManyToOne
-    @JoinColumn(name = "Locatario_id")
+    @JoinColumn(name = "locatario_id")
     private Locatario locatario_bd;
 
     @ManyToOne
-    @JoinColumn(name = "proprietario_id")
-    private Proprietario proprietario_bd;
+    @JoinColumn(name = "imovel_id")
+    private Imovel imovel_bd;
 
 
 
@@ -113,14 +113,17 @@ public class Locacao {
     }
 
 
-    public Proprietario getProprietario_bd() {
-        return proprietario_bd;
+
+    public Imovel getImovel_bd() {
+        return imovel_bd;
     }
 
 
-    public void setProprietario_bd(Proprietario proprietario_bd) {
-        this.proprietario_bd = proprietario_bd;
+
+    public void setImovel_bd(Imovel imovel_bd) {
+        this.imovel_bd = imovel_bd;
     }
+
 
 
     

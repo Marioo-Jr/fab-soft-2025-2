@@ -1,8 +1,9 @@
 package br.univille.fabsoft_backend.entity;
-
 import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -10,10 +11,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "reserva_tb")
 public class Reserva {
-
-    // arrumar os valores totais das tabelas
-
-
+ // arrumar os valores totais das tabelas
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate dataEvento;
     private Double valorTotal;

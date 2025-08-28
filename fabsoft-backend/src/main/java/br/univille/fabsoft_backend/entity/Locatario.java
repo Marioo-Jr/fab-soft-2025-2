@@ -8,9 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 
@@ -32,11 +30,9 @@ public class Locatario {
     private List<Reserva> reserva_bd = new ArrayList<>();
 
 
-    @OneToOne
-    @MapsId
-    private Imovel imovel_bd;
 
-    @OneToMany(mappedBy = "Locatario_bd")
+
+    @OneToMany(mappedBy = "locatario_bd")
     private List<Locacao> locacao_bd = new ArrayList<>();
     
     
@@ -89,17 +85,6 @@ public class Locatario {
     }
     public void setDataDeNascimento(LocalTime dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
-    }
-    
-    
-
-    public Imovel getImovel_bd() {
-        return imovel_bd;
-    }
-
-
-    public void setImovel_bd(Imovel imovel_bd) {
-        this.imovel_bd = imovel_bd;
     }
 
 
