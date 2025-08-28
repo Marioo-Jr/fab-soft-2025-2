@@ -1,14 +1,17 @@
 package br.univille.fabsoft_backend.entity;
-
 import java.time.LocalDate;
-
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table(name = "Proprietario_tb")
 public class Proprietario {
 
     @Id
@@ -21,6 +24,20 @@ public class Proprietario {
     private String telefone;
 
 
+    @OneToMany(mappedBy = "proprietario_bd")
+    private List<Locatario> locatario_bd = new ArrayList<>();
+    
+
+
+
+    public Proprietario(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.telefone = telefone;
+    }
 
     public Long getId() {
         return id;
@@ -57,6 +74,12 @@ public class Proprietario {
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    public List<Locatario> getLocatario_bd() {
+        return locatario_bd;
+    }
+    public void setLocatario_bd(List<Locatario> locatario) {
+        this.locatario_bd = locatario;
     }
 
     
