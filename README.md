@@ -122,16 +122,16 @@ VSCode
 
 ```mermaid
 ---
-title: Diagrama de Entidades
+title: Diagrama de Entidades Corrigido
 ---
 classDiagram
-    Locacao "1" --> "1" Imovel
-    Locacao "*" -->"1" Locatario
-    Locacao "*" --> "1" Proprietario
+    Locacao "*" --> "1" Locatario
+    Locacao "*" --> "1" Imovel
+    Imovel "*" --> "1" Condominio
+    Imovel "*" --> "1" Proprietario
     Espaco "*" --> "1" Condominio
     Reserva "*" --> "1" Espaco
     Reserva "*" --> "1" Locatario
-    Condominio "*" --> "1" Imovel
     
 
     Locacao ..> StatusLocacao
