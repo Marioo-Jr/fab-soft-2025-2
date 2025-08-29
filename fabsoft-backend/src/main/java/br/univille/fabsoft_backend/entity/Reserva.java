@@ -11,37 +11,32 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "reserva_tb")
 public class Reserva {
- // arrumar os valores totais das tabelas
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate dataEvento;
     private Double valorTotal;
     private String observacoes;
-    private Locatario locatario;
-    private Espaco espaco;
+
 
 
     @ManyToOne
-    @JoinColumn(name = "reserva_id")
+    @JoinColumn(name = "reserva_locatario_id")
     private Locatario locatario_bd;
 
     @ManyToOne
-    @JoinColumn(name = "reserva_id")
+    @JoinColumn(name = "reserva_espaco_id")
     private Espaco espaco_bd;
 
     public Reserva() {}
 
 
 
-    public Reserva(Long id, LocalDate dataEvento, Double valorTotal, String observacoes, Locatario locatario,
-            Espaco espaco) {
+    public Reserva(Long id, LocalDate dataEvento, Double valorTotal, String observacoes) {
         this.id = id;
         this.dataEvento = dataEvento;
         this.valorTotal = valorTotal;
         this.observacoes = observacoes;
-        this.locatario = locatario;
-        this.espaco = espaco;
     }
 
 
@@ -77,22 +72,6 @@ public class Reserva {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
-    }
-
-    public Locatario getLocatario() {
-        return locatario;
-    }
-
-    public void setLocatario(Locatario locatario) {
-        this.locatario = locatario;
-    }
-
-    public Espaco getEspaco() {
-        return espaco;
-    }
-
-    public void setEspaco(Espaco espaco) {
-        this.espaco = espaco;
     }
 
 

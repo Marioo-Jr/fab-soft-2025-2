@@ -122,7 +122,7 @@ VSCode
 
 ```mermaid
 ---
-title: Diagrama de Entidades Corrigido
+title: Diagrama de Entidades
 ---
 classDiagram
     Locacao "*" --> "1" Locatario

@@ -1,8 +1,6 @@
 package br.univille.fabsoft_backend.entity;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +13,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "espaco_tb")
 public class Espaco {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,16 +20,18 @@ public class Espaco {
     private String descricao;
     private Integer capacidadeMaxima;
     private Double valorReserva;
-    private Condominio condominio;
 
 
-    
-    @OneToMany
-    private List<Reserva> reserva_bd = new ArrayList<>();
-    
+
     @ManyToOne
-    @JoinColumn(name = "espaco_id")
+    @JoinColumn(name = "condominio_id")
     private Condominio condominio_bd;
+    
+    
+    @OneToMany(mappedBy = "espaco_bd")
+    private List<Reserva> reserva_bd = new ArrayList<>();
+     
+
     
     public Espaco (){}
     
@@ -43,7 +42,7 @@ public class Espaco {
         this.descricao = descricao;
         this.capacidadeMaxima = capacidadeMaxima;
         this.valorReserva = valorReserva;
-        this.condominio = condominio;
+    
     }
     
 
@@ -89,12 +88,14 @@ public class Espaco {
         this.valorReserva = valorReserva;
     }
 
-    public Condominio getCondominio() {
-        return condominio;
+
+    
+    public List<Reserva> getReserva_bd() {
+        return reserva_bd;
     }
 
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
+    public void setReserva_bd(List<Reserva> reserva_bd) {
+        this.reserva_bd = reserva_bd;
     }
 
     public Condominio getCondominio_bd() {
@@ -106,15 +107,8 @@ public class Espaco {
     }
 
 
+
     
-    public List<Reserva> getReserva_bd() {
-        return reserva_bd;
-    }
-
-    public void setReserva_bd(List<Reserva> reserva_bd) {
-        this.reserva_bd = reserva_bd;
-    }
-
     
     
 }

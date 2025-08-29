@@ -1,15 +1,13 @@
 package br.univille.fabsoft_backend.entity;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,32 +22,30 @@ public class Imovel {
     private Integer qtdeQuartos;
     private Integer qtdeBanheiros;
     private Integer vagaGaragem;
-    private Condominio condominio;
-    private Proprietario proprietario;
-
     
 
+    @ManyToOne
+    @JoinColumn(name = "condominio_id")
+    private Condominio condominio_bd;
+
     @OneToMany(mappedBy = "imovel_bd")
-    private List<Condominio> condominio_bd = new ArrayList<>();
+    private List<Locacao> locacao_bd = new ArrayList<>();
 
-    @OneToOne(mappedBy = "imovel_bd", cascade = CascadeType.ALL)
-    private Locacao locacao_bd;
-
-
+    @ManyToOne
+    @JoinColumn(name = "proprietario_id")
+    private Proprietario proprietario_bd;
 
     public Imovel (){}
 
 
 
-    public Imovel(Long id, String numero, String bloco, Integer qtdeQuartos, Integer qtdeBanheiros, Integer vagaGaragem,
-            Proprietario proprietario) {
+    public Imovel(Long id, String numero, String bloco, Integer qtdeQuartos, Integer qtdeBanheiros, Integer vagaGaragem) {
         this.id = id;
         this.numero = numero;
         this.bloco = bloco;
         this.qtdeQuartos = qtdeQuartos;
         this.qtdeBanheiros = qtdeBanheiros;
         this.vagaGaragem = vagaGaragem;
-        this.proprietario = proprietario;
     }
 
 
@@ -116,62 +112,42 @@ public class Imovel {
     }
 
 
-    public Proprietario getProprietario() {
-        return proprietario;
-    }
 
-
-    public void setProprietario(Proprietario proprietario) {
-        this.proprietario = proprietario;
-    }
-
-
-
-    
-
-
-    
-
-
-    public Condominio getCondominio() {
-        return condominio;
-    }
-
-
-
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
-    }
-
-
-
-    public List<Condominio> getCondominio_bd() {
-        return condominio_bd;
-    }
-
-
-
-    public void setCondominio_bd(List<Condominio> condominio_bd) {
-        this.condominio_bd = condominio_bd;
-    }
-
-
-
-    public Locacao getLocacao_bd() {
+    public List<Locacao> getLocacao_bd() {
         return locacao_bd;
     }
 
 
 
-    public void setLocacao_bd(Locacao locacao_bd) {
+    public void setLocacao_bd(List<Locacao> locacao_bd) {
         this.locacao_bd = locacao_bd;
     }
 
-    
-    
 
-   
 
-    
+    public Condominio getCondominio_bd() {
+        return condominio_bd;
+    }
+
+
+
+    public void setCondominio_bd(Condominio condominio_bd) {
+        this.condominio_bd = condominio_bd;
+    }
+
+
+
+    public Proprietario getProprietario_bd() {
+        return proprietario_bd;
+    }
+
+
+
+    public void setProprietario_bd(Proprietario proprietario_bd) {
+        this.proprietario_bd = proprietario_bd;
+    }
+
+
+       
 
 }

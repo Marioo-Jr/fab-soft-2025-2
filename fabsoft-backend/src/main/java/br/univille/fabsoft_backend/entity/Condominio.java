@@ -1,13 +1,10 @@
 package br.univille.fabsoft_backend.entity;
 import java.util.ArrayList;
 import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -22,7 +19,7 @@ public class Condominio {
     private String nome;
     private String endereco;
     private String cnpj;
-    private Locatario locatario;
+
 
 
 
@@ -30,21 +27,20 @@ public class Condominio {
     private List<Espaco> espaco_bd = new ArrayList<>();
 
 
-    @ManyToOne
-    @JoinColumn(name = "imovel_id")
-    private Imovel imovel_bd;
+    @OneToMany(mappedBy = "condominio_bd")
+    private List<Imovel> imovel_bd = new ArrayList<>();
 
 
     public Condominio () {}
 
 
 
-    public Condominio(Long id, String nome, String endereco, String cnpj, Locatario sindico) {
+    public Condominio(Long id, String nome, String endereco, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
         this.cnpj = cnpj;
-        this.locatario = sindico;
+    
     }
 
 
@@ -84,26 +80,6 @@ public class Condominio {
         this.cnpj = cnpj;
     }
 
-    public Locatario getLocatario() {
-        return locatario;
-    }
-
-    public void setLocatario(Locatario sindico) {
-        this.locatario = sindico;
-    }
-
-
-
-    public Imovel getImovel_bd() {
-        return imovel_bd;
-    }
-
-
-
-    public void setImovel_bd(Imovel imovel_bd) {
-        this.imovel_bd = imovel_bd;
-    }
-
 
 
     public List<Espaco> getEspaco_bd() {
@@ -114,6 +90,18 @@ public class Condominio {
 
     public void setEspaco_bd(List<Espaco> espaco_bd) {
         this.espaco_bd = espaco_bd;
+    }
+
+
+
+    public List<Imovel> getImovel_bd() {
+        return imovel_bd;
+    }
+
+
+
+    public void setImovel_bd(List<Imovel> imovel_bd) {
+        this.imovel_bd = imovel_bd;
     }
 
 
