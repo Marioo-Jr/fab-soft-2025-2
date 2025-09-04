@@ -16,7 +16,7 @@ public class Imovel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String numero;
     private String bloco;
     private Integer qtdeQuartos;
@@ -39,7 +39,7 @@ public class Imovel {
 
 
 
-    public Imovel(Long id, String numero, String bloco, Integer qtdeQuartos, Integer qtdeBanheiros, Integer vagaGaragem) {
+    public Imovel(long id, String numero, String bloco, Integer qtdeQuartos, Integer qtdeBanheiros, Integer vagaGaragem) {
         this.id = id;
         this.numero = numero;
         this.bloco = bloco;
@@ -50,14 +50,12 @@ public class Imovel {
 
 
 
-
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

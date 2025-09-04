@@ -1,5 +1,9 @@
 package br.univille.fabsoft_backend.entity;
-import java.time.LocalDate;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,15 +11,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "Locacao_tb")
 public class Locacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDate inicioLocacao;
-    private LocalDate fimLocacao;
+    private long id;
+    
+    @Temporal(TemporalType.DATE) // era pra importar do jakarta ou jpa?
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date inicioLocacao;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fimLocacao;
+    
     private Double valorAluguel;
 
     
@@ -35,7 +48,7 @@ public class Locacao {
 
 
 
-    public Locacao(Long id, LocalDate inicioLocacao, LocalDate fimLocacao, Double valorAluguel) {
+    public Locacao(long id, Date inicioLocacao, Date fimLocacao, Double valorAluguel) {
         this.id = id;
         this.inicioLocacao = inicioLocacao;
         this.fimLocacao = fimLocacao;
@@ -44,27 +57,27 @@ public class Locacao {
     }
 
     
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public LocalDate getInicioLocacao() {
+    public Date getInicioLocacao() {
         return inicioLocacao;
     }
 
-    public void setInicioLocacao(LocalDate inicioLocacao) {
+    public void setInicioLocacao(Date inicioLocacao) {
         this.inicioLocacao = inicioLocacao;
     }
 
-    public LocalDate getFimLocacao() {
+    public Date getFimLocacao() {
         return fimLocacao;
     }
 
-    public void setFimLocacao(LocalDate fimLocacao) {
+    public void setFimLocacao(Date fimLocacao) {
         this.fimLocacao = fimLocacao;
     }
 

@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class Condominio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String nome;
     private String endereco;
     private String cnpj;
@@ -34,7 +34,7 @@ public class Condominio {
 
 
 
-    public Condominio(Long id, String nome, String endereco, String cnpj) {
+    public Condominio(long id, String nome, String endereco, String cnpj) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
@@ -47,11 +47,11 @@ public class Condominio {
 
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

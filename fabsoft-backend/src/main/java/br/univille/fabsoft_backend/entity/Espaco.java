@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class Espaco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String nome;
     private String descricao;
     private Integer capacidadeMaxima;
@@ -35,7 +35,7 @@ public class Espaco {
     
     public Espaco (){}
     
-    public Espaco(Long id, String nome, String descricao, Integer capacidadeMaxima, Double valorReserva,
+    public Espaco(long id, String nome, String descricao, Integer capacidadeMaxima, Double valorReserva,
     Condominio condominio) {
         this.id = id;
         this.nome = nome;
@@ -48,11 +48,11 @@ public class Espaco {
 
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

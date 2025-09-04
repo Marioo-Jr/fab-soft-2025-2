@@ -18,12 +18,12 @@ public class Locatario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String nome;
     private String cpf;
     private String endereco;
     private String telefone;
-    private LocalTime dataDeNascimento;
+    private LocalTime dataDeNascimento; // era pra ser date?
 
 
     @OneToMany(mappedBy = "locatario_bd")
@@ -39,7 +39,7 @@ public class Locatario {
     public Locatario(){}
 
     
-    public Locatario(Long id, String nome, String cpf, String endereco, String telefone, LocalTime dataDeNascimento) {
+    public Locatario(long id, String nome, String cpf, String endereco, String telefone, LocalTime dataDeNascimento) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -50,10 +50,10 @@ public class Locatario {
 
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getNome() {

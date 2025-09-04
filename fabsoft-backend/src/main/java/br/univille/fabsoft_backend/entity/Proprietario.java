@@ -1,7 +1,9 @@
 package br.univille.fabsoft_backend.entity;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 
 @Entity
@@ -17,10 +21,14 @@ public class Proprietario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String nome;
     private String cpf;
-    private LocalDate dataNascimento;
+    
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataNascimento;
+
     private String email;
     private String telefone;
 
@@ -29,7 +37,7 @@ public class Proprietario {
 
 
 
-    public Proprietario(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String telefone) {
+    public Proprietario(long id, String nome, String cpf, Date dataNascimento, String email, String telefone) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
@@ -38,10 +46,10 @@ public class Proprietario {
         this.telefone = telefone;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getNome() {
@@ -56,10 +64,10 @@ public class Proprietario {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    public LocalDate getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     public String getEmail() {

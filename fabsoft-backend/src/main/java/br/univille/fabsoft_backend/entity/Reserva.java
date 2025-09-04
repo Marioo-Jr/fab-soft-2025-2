@@ -1,5 +1,7 @@
 package br.univille.fabsoft_backend.entity;
-import java.time.LocalDate;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,14 +9,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "reserva_tb")
 public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDate dataEvento;
+    private long id;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataEvento; // date era pra importar do sql ou jpa?
+
     private Double valorTotal;
     private String observacoes;
 
@@ -32,7 +40,7 @@ public class Reserva {
 
 
 
-    public Reserva(Long id, LocalDate dataEvento, Double valorTotal, String observacoes) {
+    public Reserva(long id, Date dataEvento, Double valorTotal, String observacoes) {
         this.id = id;
         this.dataEvento = dataEvento;
         this.valorTotal = valorTotal;
@@ -42,19 +50,19 @@ public class Reserva {
 
 
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public LocalDate getDataEvento() {
+    public Date getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(LocalDate dataEvento) {
+    public void setDataEvento(Date dataEvento) {
         this.dataEvento = dataEvento;
     }
 
