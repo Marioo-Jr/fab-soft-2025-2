@@ -38,7 +38,7 @@ public class Locacao {
     @JoinColumn(name = "locatario_id")
     private Locatario locatario_bd;
 
-    @ManyToOne
+    @ManyToOne //(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "imovel_id")
     private Imovel imovel_bd;
 
