@@ -124,6 +124,7 @@ VSCode
 ---
 title: Diagrama de Entidades
 ---
+
 classDiagram
     Locacao "*" --> "1" Locatario
     Locacao "*" --> "1" Imovel
@@ -132,74 +133,62 @@ classDiagram
     Espaco "*" --> "1" Condominio
     Reserva "*" --> "1" Espaco
     Reserva "*" --> "1" Locatario
-    
+    Condominio "1" -- "1" Pessoa : sindico
+
+    Pessoa <|-- Proprietario
+    Pessoa <|-- Locatario
 
     Locacao ..> StatusLocacao
     Imovel ..> StatusImovel
     Espaco ..> StatusEspaco
     Reserva ..> StatusReserva
 
-    
-    
-
     namespace entity {
-      class Proprietario{
-
-        -id : Long
-        -nome : String
-        -cpf : String
-        -dataNascimento : LocalDate
-        -email : String
-        -telefone : String
-
-        +getId()long
-        +setId(id:long) void
-        +getNome() String
-        +setNome(nome:String) void
-        +getCpf() String
-        +setCpf(cpf:String) void
-        +getEmail() String
-        +setEmail(email:String) void
-        +getTelefone() String
-        +setTelefone(telefone:String) void
-        +getDataNascimento() LocalDate
-        +setDataNascimento(LocalDate:Date) void
-        
-
-      }
-
-      class Locatario{
-          -id : long
+      class Pessoa {
+          <<abstract>>
+          -id : Long
           -nome : String
-          -cpf : String 
-          -endereco : String
+          -cpf : String
+          -dataNascimento : LocalDate
+          -email : String
           -telefone : String
-          -dataNascimento: LocalDate
 
-          +getId()long
-          +setId(id:long) void
+          +getId() Long
+          +setId(id:Long) void
           +getNome() String
           +setNome(nome:String) void
           +getCpf() String
           +setCpf(cpf:String) void
-          +getEndereco() String
-          +setEndereco(endereco:String) void
+          +getEmail() String
+          +setEmail(email:String) void
           +getTelefone() String
           +setTelefone(telefone:String) void
           +getDataNascimento() LocalDate
-          +setDataNascimento(LocalDate:Date) void
+          +setDataNascimento(dataNascimento:LocalDate) void
       }
-      class Locacao{
+
+      class Proprietario {
+          
+      }
+
+      class Locatario {
+          -endereco : String
+
+          +getEndereco() String
+          +setEndereco(endereco:String) void
+      }
+
+      class Locacao {
         -id : Long
         -locatario : Locatario
         -imovel : Imovel
-        -dataInicio : LocalDtate
+        -dataInicio : LocalDate
         -dataFim: LocalDate
         -valorAluguel : Double
-        -statusLocacao : Enum "Ativa","Encerrada","Inadimplente"
+        -statusLocacao : StatusLocacao
 
-        +getId()long
-        +setId(id:long) void
+        +getId() Long
+        +setId(id:Long) void
         +getLocatario() Locatario
         +setLocatario(locatario:Locatario) void
         +getImovel() Imovel
@@ -209,18 +198,17 @@ classDiagram
         +getDataFim() LocalDate
         +setDataFim(dataFim:LocalDate) void
         +getValorAluguel() Double
-        +setValorAlguel(valorAluguel:Double) void
-        +getStatusLocacao() Enum
-        +setStatus(StatusLocacao:Enum) void
-
+        +setValorAluguel(valorAluguel:Double) void
+        +getStatusLocacao() StatusLocacao
+        +setStatusLocacao(statusLocacao:StatusLocacao) void
       }
 
-      class Condominio{
+      class Condominio {
         -id : Long
         -nome : String
         -endereco : String
         -cnpj : String
-        -sindico : Locatario
+        -sindico : Pessoa
 
         +getId() Long
         +setId(id:Long) void
@@ -230,50 +218,49 @@ classDiagram
         +setEndereco(endereco:String) void
         +getCnpj() String
         +setCnpj(cnpj:String) void
-        +getSindico() Locatario
-        +setSindico(sindico:Locatario) void
-
+        +getSindico() Pessoa
+        +setSindico(sindico:Pessoa) void
       }
 
-      class Imovel{
-      -id : Long
-      -numero : String
-      -bloco : String
-      -qtdeQuartos : Integer
-      -qtdeBanheiros : Integer
-      -vagaGaragem : Integer
-      -statusImovel : Enum "Ocupado","Disponivel","Manutencao"
-      -condominio : Condominio
-      -proprietario : Proprietario
+      class Imovel {
+        -id : Long
+        -numero : String
+        -bloco : String
+        -qtdeQuartos : Integer
+        -qtdeBanheiros : Integer
+        -vagaGaragem : Integer
+        -statusImovel : StatusImovel
+        -condominio : Condominio
+        -proprietario : Proprietario
 
-      +getId() Long
-      +setId(id:Long) void
-      +getNumero() String
-      +setNumero(numero:String) void
-      +getBloco() String
-      +setBloco(bloco:String) void
-      +getQtdeQuartos() Integer
-      +setQtdeQuartos(qtdeQuartos:Integer) void
-      +getQtdeBanheiros() Integer
-      +serQtdeBanheiros(qtdeBanheiros:Integer) void
-      +getVagaGaragem() Integer
-      +setVagaGaragem(vagaGaragem:Integer) void
-      +getStatusImovel() Enum
-      +setStatusImovel(statusImovel:Enum) void
-      +getCondominio() Condominio
-      +setCondominio(condominio:Condominio) void
-      +getProprietario() Proprietario
-      +setProprietario(proprietario:Proprietario) void    
+        +getId() Long
+        +setId(id:Long) void
+        +getNumero() String
+        +setNumero(numero:String) void
+        +getBloco() String
+        +setBloco(bloco:String) void
+        +getQtdeQuartos() Integer
+        +setQtdeQuartos(qtdeQuartos:Integer) void
+        +getQtdeBanheiros() Integer
+        +setQtdeBanheiros(qtdeBanheiros:Integer) void
+        +getVagaGaragem() Integer
+        +setVagaGaragem(vagaGaragem:Integer) void
+        +getStatusImovel() StatusImovel
+        +setStatusImovel(statusImovel:StatusImovel) void
+        +getCondominio() Condominio
+        +setCondominio(condominio:Condominio) void
+        +getProprietario() Proprietario
+        +setProprietario(proprietario:Proprietario) void
+      }
 
- }    
       class Espaco {
         -id : Long
         -nome : String
         -descricao : String
         -capacidadeMaxima : Integer
         -valorReserva : Double
-        -statusEspaco : Enum
-        condominio : Condominio
+        -statusEspaco : StatusEspaco
+        -condominio : Condominio
 
         +getId() Long
         +setId(id:Long) void
@@ -283,21 +270,20 @@ classDiagram
         +setDescricao(descricao:String) void
         +getCapacidadeMaxima() Integer
         +setCapacidadeMaxima(capacidadeMaxima:Integer) void
-        +getStatusEspaco() Enum
-        +setStatusEspaco(statusEspaco:Enum) void
+        +getStatusEspaco() StatusEspaco
+        +setStatusEspaco(statusEspaco:StatusEspaco) void
         +getCondominio() Condominio
         +setCondominio(condominio:Condominio) void
       }
 
-      class Reserva{
-
+      class Reserva {
         -id : Long
         -espaco : Espaco
         -locatario : Locatario
-        -dataEvento : LocalTime
+        -dataEvento : LocalDate
         -valorTotal : Double
         -observacoes : String
-        -StatusReserva : Enum
+        -statusReserva : StatusReserva
 
         +getId() Long
         +setId(id:Long) void
@@ -305,17 +291,15 @@ classDiagram
         +setEspaco(espaco:Espaco) void
         +getLocatario() Locatario
         +setLocatario(locatario:Locatario) void
-        +getDataEvento() LocalTime
-        +setDataEvento(dataEvento:LocalTime) void
+        +getDataEvento() LocalDate
+        +setDataEvento(dataEvento:LocalDate) void
         +getValorTotal() Double
         +setValorTotal(valorTotal:Double) void
         +getObservacoes() String
         +setObservacoes(observacoes:String) void
-        +getStatusReserva() Enum
-        +setStatusReserva(statusReserva:Enum) void
-
+        +getStatusReserva() StatusReserva
+        +setStatusReserva(statusReserva:StatusReserva) void
       }
-
   
      class StatusLocacao {
         <<enum>>
