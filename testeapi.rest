@@ -1,11 +1,44 @@
-### GET Clientes
-GET http://localhost:8080/api/v1/clientes
+### GET Pessoa por id
+GET http://localhost:8080/api/v1/pessoas/1
+Content-Type: application/json"
+
+
+### GET findAll
+GET http://localhost:8080/api/v1/pessoas
+Content-Type: application/json"
+
+### POST insert pessoas
+POST http://localhost:8080/api/v1/pessoas
 Content-Type: application/json
 
-### POST Clientes
-POST http://localhost:8080/api/v1/clientes
-Content-Type: application/json
-
-{ "id":0
-
+{
+  "nome": "Carlos Silva",
+  "cpf": "111.222.333-44",
+  "dataNascimento": "1980-05-15",
+  "email": "carlos.silva@email.com",
+  "telefone": "47999998888",
+  "endereco" : "aaaaaaa",
+  "tipoPessoa": "LOCATARIO"
 }
+
+### Put update pessoas
+PUT http://localhost:8080/api/v1/pessoas/1
+Content-Type: application/json
+
+{
+  "nome": "Ana Algo",
+    "cpf": "555.666.777-88",
+    "dataNascimento": "1992-10-20",
+    "email": "ana.loc@email.com",
+    "telefone": "47988882222",
+    "tipo": "LOCATARIO",
+    "endereco": "Rua das Flores, 123, Centro"
+}
+
+
+### Put update pessoas
+DELETE  http://localhost:8080/api/v1/pessoas/2
+Content-Type: application/json
+
+// NAO ESTA DELETANDO PESSOA.
+

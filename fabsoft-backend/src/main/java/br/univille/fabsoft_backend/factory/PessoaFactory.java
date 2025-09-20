@@ -1,10 +1,13 @@
 package br.univille.fabsoft_backend.factory;
 
+import org.springframework.stereotype.Component;
+
 import br.univille.fabsoft_backend.DTO.PessoaDTO;
 import br.univille.fabsoft_backend.entity.Locatario;
 import br.univille.fabsoft_backend.entity.Pessoa;
 import br.univille.fabsoft_backend.entity.Proprietario;
 
+@Component
 public class PessoaFactory {
 
 
