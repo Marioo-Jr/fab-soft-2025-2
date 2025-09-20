@@ -28,6 +28,15 @@ public class CondominioServiceImpl implements  CondominioService{
         return repository.save(condominio);
     }
 
+    @Override
+    public Condominio update(long id, Condominio condominio) {
+        
+        return null;
+    }
+
+    
+
+
 
 
 }

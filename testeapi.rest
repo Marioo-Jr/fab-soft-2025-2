@@ -1,3 +1,11 @@
 ### GET Clientes
 GET http://localhost:8080/api/v1/clientes
 Content-Type: application/json
+
+### POST Clientes
+POST http://localhost:8080/api/v1/clientes
+Content-Type: application/json
+
+{ "id":0
+
+}

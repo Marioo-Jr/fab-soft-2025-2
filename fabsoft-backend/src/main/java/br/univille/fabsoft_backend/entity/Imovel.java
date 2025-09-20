@@ -1,6 +1,8 @@
 package br.univille.fabsoft_backend.entity;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,10 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+
 
 @Entity
-@Table(name = "imovel_tb")
 public class Imovel {
     
     @Id
@@ -24,16 +25,14 @@ public class Imovel {
     private Integer vagaGaragem;
     
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "condominio_id")
     private Condominio condominio_bd;
 
-    @OneToMany(mappedBy = "imovel_bd")
+    @OneToMany(mappedBy = "imovel_bd",cascade = CascadeType.ALL)
     private List<Locacao> locacao_bd = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "proprietario_id")
-    private Proprietario proprietario_bd;
+
 
     public Imovel (){}
 
@@ -132,19 +131,6 @@ public class Imovel {
     public void setCondominio_bd(Condominio condominio_bd) {
         this.condominio_bd = condominio_bd;
     }
-
-
-
-    public Proprietario getProprietario_bd() {
-        return proprietario_bd;
-    }
-
-
-
-    public void setProprietario_bd(Proprietario proprietario_bd) {
-        this.proprietario_bd = proprietario_bd;
-    }
-
 
        
 

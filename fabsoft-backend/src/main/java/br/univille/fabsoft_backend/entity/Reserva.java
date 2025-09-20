@@ -2,18 +2,18 @@ package br.univille.fabsoft_backend.entity;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "reserva_tb")
 public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,18 +21,16 @@ public class Reserva {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dataEvento; // date era pra importar do sql ou jpa?
+    private Date dataEvento; 
 
     private Double valorTotal;
     private String observacoes;
 
 
 
-    @ManyToOne
-    @JoinColumn(name = "reserva_locatario_id")
-    private Locatario locatario_bd;
 
-    @ManyToOne
+
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "reserva_espaco_id")
     private Espaco espaco_bd;
 
@@ -96,15 +94,6 @@ public class Reserva {
 
 
 
-    public Locatario getLocatario_bd() {
-        return locatario_bd;
-    }
-
-
-
-    public void setLocatario_bd(Locatario locatario_bd) {
-        this.locatario_bd = locatario_bd;
-    }
 
     
 

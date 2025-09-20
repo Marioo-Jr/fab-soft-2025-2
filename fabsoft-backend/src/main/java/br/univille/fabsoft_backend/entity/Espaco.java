@@ -1,6 +1,8 @@
 package br.univille.fabsoft_backend.entity;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,10 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+
 
 @Entity
-@Table(name = "espaco_tb")
 public class Espaco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +24,12 @@ public class Espaco {
 
 
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "condominio_id")
     private Condominio condominio_bd;
     
     
-    @OneToMany(mappedBy = "espaco_bd")
+    @OneToMany(mappedBy = "espaco_bd",cascade = CascadeType.ALL)
     private List<Reserva> reserva_bd = new ArrayList<>();
      
 

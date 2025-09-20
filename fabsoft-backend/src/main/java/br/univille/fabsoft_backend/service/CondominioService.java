@@ -8,4 +8,5 @@ public interface CondominioService {
 
     List<Condominio> getAll();
     Condominio save (Condominio condominio);
+    Condominio update(long id, Condominio condominio) throws Exception;
 }

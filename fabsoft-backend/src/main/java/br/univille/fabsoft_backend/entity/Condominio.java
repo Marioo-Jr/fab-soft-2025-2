@@ -1,16 +1,19 @@
 package br.univille.fabsoft_backend.entity;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToOne;
+
 
 
 @Entity
-@Table(name = "condominio_tb")
 public class Condominio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,15 +22,18 @@ public class Condominio {
     private String endereco;
     private String cnpj;
 
+    
 
-
-
-    @OneToMany(mappedBy = "condominio_bd")
+    @OneToMany(mappedBy = "condominio_bd",cascade = CascadeType.ALL)
     private List<Espaco> espaco_bd = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "condominio_bd")
     private List<Imovel> imovel_bd = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "sindico_id")
+    private Pessoa pessoa;
 
 
     public Condominio () {}
