@@ -34,7 +34,7 @@ public class ImovelImpl implements ImovelService {
     @Override
     public ImovelDTO findById(Long id){
 
-        Imovel result = imovelRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Imóvel não encontrado com ID: " + id));;
+        Imovel result = imovelRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Imóvel não encontrado com ID: " + id));
         return toDTO(result);
 
     }
@@ -43,8 +43,8 @@ public class ImovelImpl implements ImovelService {
     @Override
     public Page<ImovelDTO> findAll(Pageable pageable){
 
-        Page<Imovel> dto = imovelRepository.findAll(pageable);
-        return dto.map(x -> toDTO(x));
+        Page<Imovel> imovel = imovelRepository.findAll(pageable);
+        return imovel.map(x -> toDTO(x));
 
     }
 

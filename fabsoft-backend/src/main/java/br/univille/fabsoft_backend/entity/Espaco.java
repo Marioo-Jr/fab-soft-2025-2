@@ -26,7 +26,7 @@ public class Espaco {
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "condominio_id")
-    private Condominio condominio_bd;
+    private Condominio condominio;
     
     
     @OneToMany(mappedBy = "espaco_bd",cascade = CascadeType.ALL)
@@ -100,11 +100,11 @@ public class Espaco {
     }
 
     public Condominio getCondominio_bd() {
-        return condominio_bd;
+        return condominio;
     }
 
     public void setCondominio_bd(Condominio condominio_bd) {
-        this.condominio_bd = condominio_bd;
+        this.condominio = condominio_bd;
     }
 
 

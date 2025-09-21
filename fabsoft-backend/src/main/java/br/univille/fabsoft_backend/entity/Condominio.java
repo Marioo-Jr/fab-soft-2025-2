@@ -21,10 +21,10 @@ public class Condominio {
     private String nome;
     private String endereco;
     private String cnpj;
-
+    
     
 
-    @OneToMany(mappedBy = "condominio_bd",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "condominio",cascade = CascadeType.ALL)
     private List<Espaco> espaco_bd = new ArrayList<>();
 
 
@@ -32,25 +32,26 @@ public class Condominio {
     private List<Imovel> imovel_bd = new ArrayList<>();
 
     @OneToOne
-    @JoinColumn(name = "sindico_id")
-    private Pessoa pessoa;
+    @JoinColumn(name = "sindico")
+    private Pessoa sindico;
 
 
     public Condominio () {}
 
 
 
-    public Condominio(long id, String nome, String endereco, String cnpj) {
+
+    public Condominio(long id, String nome, String endereco, String cnpj, Long sindicoId, List<Espaco> espaco_bd,
+        List<Imovel> imovel_bd, Pessoa pessoa) {
+            
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
         this.cnpj = cnpj;
-    
+        this.espaco_bd = espaco_bd;
+        this.imovel_bd = imovel_bd;
+        this.sindico = pessoa;
     }
-
-
-
-
 
 
     public long getId() {
@@ -110,6 +111,28 @@ public class Condominio {
     }
 
 
+
+
+    public Pessoa getSindico() {
+        return sindico;
+    }
+
+
+
+
+    public void setSindico(Pessoa sindico) {
+        this.sindico = sindico;
+    }
+
+
+
+    
+
+
+
+    
+
+    
     
 
 }

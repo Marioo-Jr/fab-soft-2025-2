@@ -30,7 +30,7 @@ public class Pessoa {
     private String telefone;
 
 
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL )
+    @OneToOne(mappedBy = "sindico", cascade = CascadeType.ALL )
     private Condominio condominio_bd;
 
 
