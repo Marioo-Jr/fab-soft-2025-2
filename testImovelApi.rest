@@ -1,0 +1,46 @@
+### GET Pessoa por id
+GET http://localhost:8080/api/v1/imoveis/1
+Content-Type: application/json"
+
+
+### GET findAll
+GET http://localhost:8080/api/v1/imoveis
+Content-Type: application/json"
+
+
+### POST insert
+POST http://localhost:8080/api/v1/imoveis
+Content-Type: application/json
+
+{
+  "numero": "301",
+  "bloco": "B",
+  "qtdeQuartos": 2,
+  "qtdeBanheiros": 1,
+  "vagaGaragem": 1,
+  "statusImovel": "DISPONIVEL",
+  "condominioId": 1,
+  "proprietarioId": 1
+}
+
+//PARA ESSE INSERT FUNCIONAR FAÇA PRIMEIRO O DO CONDOMINIO E DPS PESSOA.
+
+### Put update pessoas
+PUT http://localhost:8080/api/v1/imoveis/1
+Content-Type: application/json
+
+{
+  "numero": "301",
+  "bloco": "B",
+  "qtdeQuartos": 2,
+  "qtdeBanheiros": 1,
+  "vagaGaragem": 1,
+  "statusImovel": "DISPONIVEL",
+  "condominioId": 1,
+  "proprietarioId": 1
+}
+
+
+### Put delete pessoas
+DELETE  http://localhost:8080/api/v1/imoveis/1
+Content-Type: application/json

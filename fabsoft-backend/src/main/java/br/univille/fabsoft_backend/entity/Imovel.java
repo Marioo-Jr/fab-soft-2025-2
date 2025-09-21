@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,13 +26,20 @@ public class Imovel {
     private Integer qtdeBanheiros;
     private Integer vagaGaragem;
     
+    @Enumerated(EnumType.STRING)
+    private StatusImovel statusImovel;
+    
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "condominio_id")
-    private Condominio condominio_bd;
+    private Condominio condominio;
 
     @OneToMany(mappedBy = "imovel_bd",cascade = CascadeType.ALL)
     private List<Locacao> locacao_bd = new ArrayList<>();
+
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
+    @JoinColumn(name = "proprietario_id")
+    private Proprietario proprietario;
 
 
 
@@ -38,14 +47,22 @@ public class Imovel {
 
 
 
-    public Imovel(long id, String numero, String bloco, Integer qtdeQuartos, Integer qtdeBanheiros, Integer vagaGaragem) {
+
+    public Imovel(long id, String numero, String bloco, Integer qtdeQuartos, Integer qtdeBanheiros, Integer vagaGaragem,
+            StatusImovel statusImovel, Condominio condominio_bd, List<Locacao> locacao_bd, Proprietario proprietario) {
         this.id = id;
         this.numero = numero;
         this.bloco = bloco;
         this.qtdeQuartos = qtdeQuartos;
         this.qtdeBanheiros = qtdeBanheiros;
         this.vagaGaragem = vagaGaragem;
+        this.statusImovel = statusImovel;
+        this.condominio = condominio_bd;
+        this.locacao_bd = locacao_bd;
+        this.proprietario = proprietario;
     }
+
+
 
 
 
@@ -122,14 +139,40 @@ public class Imovel {
 
 
 
-    public Condominio getCondominio_bd() {
-        return condominio_bd;
+    public Condominio getCondominio() {
+        return condominio;
     }
 
 
 
-    public void setCondominio_bd(Condominio condominio_bd) {
-        this.condominio_bd = condominio_bd;
+    public void setCondominio(Condominio condominio_bd) {
+        this.condominio = condominio_bd;
+    }
+
+
+
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+
+
+    public void setProprietario(Proprietario proprietario) {
+        this.proprietario = proprietario;
+    }
+
+
+
+
+    public StatusImovel getStatusImovel() {
+        return statusImovel;
+    }
+
+
+
+
+    public void setStatusImovel(StatusImovel statusImovel) {
+        this.statusImovel = statusImovel;
     }
 
        

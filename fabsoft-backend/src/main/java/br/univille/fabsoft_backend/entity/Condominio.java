@@ -28,7 +28,7 @@ public class Condominio {
     private List<Espaco> espaco_bd = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "condominio_bd")
+    @OneToMany(mappedBy = "condominio")
     private List<Imovel> imovel_bd = new ArrayList<>();
 
     @OneToOne

@@ -36,9 +36,8 @@ Content-Type: application/json
 }
 
 
-### Put update pessoas
-DELETE  http://localhost:8080/api/v1/pessoas/2
+### Put delete pessoas
+DELETE  http://localhost:8080/api/v1/pessoas/1
 Content-Type: application/json
 
-// NAO ESTA DELETANDO PESSOA.
 
