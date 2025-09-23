@@ -39,7 +39,7 @@ Content-Type: application/json
 
 
 ### Put delete pessoas
-DELETE  http://localhost:8080/api/v1/pessoas/1
+DELETE  http://localhost:8080/api/v1/pessoas/2
 Content-Type: application/json
 
 

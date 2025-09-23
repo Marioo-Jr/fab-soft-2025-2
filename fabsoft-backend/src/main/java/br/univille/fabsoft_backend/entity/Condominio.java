@@ -39,8 +39,6 @@ public class Condominio {
     public Condominio () {}
 
 
-
-
     public Condominio(long id, String nome, String endereco, String cnpj, Long sindicoId, List<Espaco> espaco_bd,
         List<Imovel> imovel_bd, Pessoa pessoa) {
             

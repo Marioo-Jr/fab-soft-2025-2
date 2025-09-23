@@ -4,23 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import br.univille.fabsoft_backend.DTO.CondominioDTO;
 import br.univille.fabsoft_backend.entity.Condominio;
 import br.univille.fabsoft_backend.entity.Pessoa;
 import br.univille.fabsoft_backend.repository.CondominioRepository;
+import br.univille.fabsoft_backend.repository.ImovelRepository;
 import br.univille.fabsoft_backend.repository.PessoaRepository;
 import br.univille.fabsoft_backend.service.CondominioService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 @Service
-public class CondominioServiceImpl implements  CondominioService{
+public class CondominioServiceImpl implements CondominioService{
 
     @Autowired
     public CondominioRepository condominioRepository;
 
     @Autowired
     public PessoaRepository pessoaRepository;
+
+    @Autowired
+    public ImovelRepository imovelRepository;
 
     @Override
     public CondominioDTO findById(Long id){
@@ -67,7 +71,7 @@ public class CondominioServiceImpl implements  CondominioService{
         Condominio condominio = condominioRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: "));
 
-        condominio = toEntity(dto);
+        copyDtoToEntity(dto, condominio);
 
         if (dto.getSindicoId() != null) {
             Pessoa sindico = pessoaRepository.findById(dto.getSindicoId())
@@ -77,20 +81,21 @@ public class CondominioServiceImpl implements  CondominioService{
             condominio.setSindico(null);
         }
 
-        Condominio condominioAtualizado = condominioRepository.save(condominio);
-        return toDTO(condominioAtualizado);
+        return toDTO(condominioRepository.save(condominio));
     }
 
-    @Override
-    @Transactional
-    public void delete (Long id){
-         if (!condominioRepository.existsById(id)) {
-            throw new EntityNotFoundException("Imóvel não encontrado com ID: ");
-        }
-
-       condominioRepository.deleteById(id);
-
+@Override
+@Transactional
+public void delete(Long id) {
+    
+    if (!condominioRepository.existsById(id)) {
+        throw new EntityNotFoundException("Condomínio não encontrado com ID: " + id);
     }
+
+    condominioRepository.desassociarSindico(id);
+    
+    condominioRepository.deleteById(id);
+}
 
 
 
@@ -120,10 +125,13 @@ public class CondominioServiceImpl implements  CondominioService{
         condominio.setCnpj(dto.getCnpj());
         return condominio;
 
-        
+    }
 
-        
+    public void copyDtoToEntity (CondominioDTO dto, Condominio condominio){
 
+        condominio.setCnpj(dto.getCnpj());
+        condominio.setEndereco(dto.getEndereco());
+        condominio.setNome(dto.getNome());
 
     }
 

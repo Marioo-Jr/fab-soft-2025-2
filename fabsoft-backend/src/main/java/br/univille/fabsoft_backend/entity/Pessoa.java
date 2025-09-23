@@ -1,7 +1,6 @@
 package br.univille.fabsoft_backend.entity;
 import java.sql.Date;
 import org.springframework.format.annotation.DateTimeFormat;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +29,7 @@ public class Pessoa {
     private String telefone;
 
 
-    @OneToOne(mappedBy = "sindico", cascade = CascadeType.ALL )
+    @OneToOne(mappedBy = "sindico")
     private Condominio condominio_bd;
 
 
@@ -91,6 +90,14 @@ public class Pessoa {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public Condominio getCondominio_bd() {
+        return condominio_bd;
+    }
+
+    public void setCondominio_bd(Condominio condominio_bd) {
+        this.condominio_bd = condominio_bd;
     }
 
 
