@@ -3,6 +3,8 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,10 +28,12 @@ public class Locacao {
     private Date fimLocacao;
     
     private Double valorAluguel;
-    
+
+    @Enumerated(EnumType.STRING)
+    private StatusLocacao statusLocacao;
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
-    @JoinColumn(name = "imovel_id")
+    @JoinColumn(name = "imovel")
     private Imovel imovel_bd;
 
 
@@ -38,15 +42,19 @@ public class Locacao {
 
 
 
-    public Locacao(long id, Date inicioLocacao, Date fimLocacao, Double valorAluguel) {
+
+    public Locacao(long id, Date inicioLocacao, Date fimLocacao, Double valorAluguel, StatusLocacao statusLocacao, Imovel imovel_bd) {
         this.id = id;
         this.inicioLocacao = inicioLocacao;
         this.fimLocacao = fimLocacao;
         this.valorAluguel = valorAluguel;
-    
+        this.statusLocacao = statusLocacao;
+        this.imovel_bd = imovel_bd;
     }
 
-    
+
+
+
     public long getId() {
         return id;
     }
@@ -87,6 +95,18 @@ public class Locacao {
 
     public void setImovel_bd(Imovel imovel_bd) {
         this.imovel_bd = imovel_bd;
+    }
+
+
+
+    public StatusLocacao getStatusLocacao() {
+        return statusLocacao;
+    }
+
+
+
+    public void setStatusLocacao(StatusLocacao statusLocacao) {
+        this.statusLocacao = statusLocacao;
     }
 
 

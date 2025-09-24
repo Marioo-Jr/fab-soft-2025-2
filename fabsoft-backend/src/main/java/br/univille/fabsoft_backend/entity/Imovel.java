@@ -34,7 +34,7 @@ public class Imovel {
     @JoinColumn(name = "condominio_id")
     private Condominio condominio;
 
-    @OneToMany(mappedBy = "imovel_bd",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "imovel",cascade = CascadeType.ALL)
     private List<Locacao> locacao_bd = new ArrayList<>();
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})

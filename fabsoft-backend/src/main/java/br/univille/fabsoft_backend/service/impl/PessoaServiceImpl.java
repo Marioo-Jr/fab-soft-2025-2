@@ -33,7 +33,7 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public Page<PessoaDTO> findAll(Pageable pageable) {
         Page<Pessoa>  result = pessoaRepository.findAll(pageable);
-        return result.map( x -> this.toDTO(x));
+        return result.map( x -> toDTO(x));
 
     }
 

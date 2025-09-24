@@ -18,7 +18,7 @@ Content-Type: application/json
   "email": "carlos.silva@email.com",
   "telefone": "47999998888",
   "endereco" : "aaaaaaa",
-  "tipoPessoa": "LOCATARIO"
+  "tipoPessoa": "PROPRIETARIO"
 }
 
 
