@@ -9,6 +9,7 @@ import br.univille.fabsoft_backend.DTO.LocacaoDTO;
 import br.univille.fabsoft_backend.entity.Locacao;
 import br.univille.fabsoft_backend.repository.LocacaoRepository;
 import br.univille.fabsoft_backend.service.LocacaoService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 public class LocacaoImpl implements LocacaoService{
@@ -28,6 +29,44 @@ public class LocacaoImpl implements LocacaoService{
 
     }
 
+    @Override
+    @Transactional
+    public LocacaoDTO findByid (Long id){
+
+        Locacao locacao = locacaoRepository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("Pessoa não encontrada com o id: " ));
+        return toDTO(locacao);
+
+    }
+
+
+    public LocacaoDTO insert (LocacaoDTO dto){
+
+
+
+        Locacao locacao = toEntity(dto);
+        return toDTO(locacaoRepository.save(locacao));
+
+    }
+
+    public LocacaoDTO update (Long id, LocacaoDTO dto){
+
+        Locacao locacao = locacaoRepository.findById(id).get();
+        copyToDTO(dto, locacao);
+        return toDTO(locacaoRepository.save(locacao));
+
+    }
+
+    public void delete (Long id){
+
+        if (!locacaoRepository.existsById(id)) {
+        throw new EntityNotFoundException("Condomínio não encontrado com ID: " + id);
+    }   locacaoRepository.deleteById(id);
+        
+    }
+
+
+
     private LocacaoDTO toDTO (Locacao locacao){
         LocacaoDTO dto = new LocacaoDTO();
 
@@ -36,8 +75,6 @@ public class LocacaoImpl implements LocacaoService{
         dto.setFimLocacao(locacao.getFimLocacao());
         dto.setValorAluguel(locacao.getValorAluguel());
         dto.setStatusLocacao(locacao.getStatusLocacao());
-
-        
 
         return dto;
 
@@ -55,6 +92,16 @@ public class LocacaoImpl implements LocacaoService{
         locacao.setValorAluguel(dto.getValorAluguel());
 
         return locacao;
+
+    }
+
+
+    private void copyToDTO (LocacaoDTO dto, Locacao entity){
+
+        entity.setInicioLocacao(dto.getInicioLocacao());
+        entity.setFimLocacao(dto.getFimLocacao());
+        entity.setValorAluguel(dto.getValorAluguel());
+        entity.setStatusLocacao(dto.getStatusLocacao());
 
     }
 

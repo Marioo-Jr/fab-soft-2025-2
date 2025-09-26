@@ -25,7 +25,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public PessoaDTO findById(Long id){
-        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o id: " + id));
+        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o id: "));
         return toDTO(pessoa);
 
     }
