@@ -89,7 +89,6 @@ public class Espaco {
         this.valorReserva = valorReserva;
     }
 
-
     
     public List<Reserva> getReserva_bd() {
         return reserva_bd;
@@ -107,9 +106,5 @@ public class Espaco {
         this.condominio = condominio_bd;
     }
 
-
-
-    
-    
     
 }

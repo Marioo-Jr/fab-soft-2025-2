@@ -4,6 +4,7 @@ package br.univille.fabsoft_backend.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import br.univille.fabsoft_backend.DTO.LocacaoDTO;
 import br.univille.fabsoft_backend.entity.Locacao;
@@ -12,6 +13,7 @@ import br.univille.fabsoft_backend.service.LocacaoService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
+@Service
 public class LocacaoImpl implements LocacaoService{
 
 

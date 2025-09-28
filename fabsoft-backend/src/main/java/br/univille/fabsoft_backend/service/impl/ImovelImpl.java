@@ -39,7 +39,7 @@ public class ImovelImpl implements ImovelService {
     @Transactional(readOnly = true)
     public Page<ImovelDTO> findAll(Pageable pageable){
         Page<Imovel> imovel = imovelRepository.findAll(pageable);
-        return imovel.map(this::toDTO);
+        return imovel.map(x -> toDTO(x));
     }
 
     @Override

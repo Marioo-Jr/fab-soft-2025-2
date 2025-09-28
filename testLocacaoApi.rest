@@ -1,0 +1,39 @@
+### GET Pessoa por id
+GET http://localhost:8080/api/v1/locacoes/1
+Content-Type: application/json"
+
+
+### GET findAll
+GET http://localhost:8080/api/v1/locacoes
+Content-Type: application/json"
+
+### POST insert 
+POST http://localhost:8080/api/v1/locacoes
+Content-Type: application/json
+
+{
+  
+}
+
+
+
+### Put update 
+PUT http://localhost:8080/api/v1/locacoes/1
+Content-Type: application/json
+
+{
+  "nome": "Ana Algo",
+    "cpf": "555.666.777-88",
+    "dataNascimento": "1992-10-20",
+    "email": "ana.loc@email.com",
+    "telefone": "47988882222",
+    "tipo": "LOCATARIO",
+    "endereco": "Rua das Flores, 123, Centro"
+}
+
+
+### Put delete
+DELETE  http://localhost:8080/api/v1/locacoes/2
+Content-Type: application/json
+
+

@@ -34,7 +34,7 @@ public class Locacao {
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "imovel")
-    private Imovel imovel_bd;
+    private Imovel imovel;
 
 
 
@@ -49,7 +49,7 @@ public class Locacao {
         this.fimLocacao = fimLocacao;
         this.valorAluguel = valorAluguel;
         this.statusLocacao = statusLocacao;
-        this.imovel_bd = imovel_bd;
+        this.imovel = imovel_bd;
     }
 
 
@@ -87,14 +87,14 @@ public class Locacao {
         this.valorAluguel = valorAluguel;
     }
 
-    public Imovel getImovel_bd() {
-        return imovel_bd;
+    public Imovel getImovel() {
+        return imovel;
     }
 
 
 
-    public void setImovel_bd(Imovel imovel_bd) {
-        this.imovel_bd = imovel_bd;
+    public void setImovel(Imovel imovel_bd) {
+        this.imovel = imovel_bd;
     }
 
 
