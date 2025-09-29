@@ -2,6 +2,7 @@ package br.univille.fabsoft_backend.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,8 @@ import br.univille.fabsoft_backend.DTO.LocacaoDTO;
 import br.univille.fabsoft_backend.entity.Locacao;
 import br.univille.fabsoft_backend.repository.LocacaoRepository;
 import br.univille.fabsoft_backend.service.LocacaoService;
-import jakarta.persistence.EntityNotFoundException;
+import br.univille.fabsoft_backend.service.exeptions.DatabaseException;
+import br.univille.fabsoft_backend.service.exeptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -36,7 +38,7 @@ public class LocacaoImpl implements LocacaoService{
     public LocacaoDTO findByid (Long id){
 
         Locacao locacao = locacaoRepository.findById(id).orElseThrow(
-            () -> new EntityNotFoundException("Pessoa não encontrada com o id: " ));
+            () -> new ResourceNotFoundException("Pessoa não encontrada com o id: " ));
         return toDTO(locacao);
 
     }
@@ -52,8 +54,9 @@ public class LocacaoImpl implements LocacaoService{
     }
 
     public LocacaoDTO update (Long id, LocacaoDTO dto){
-
-        Locacao locacao = locacaoRepository.findById(id).get();
+        
+        Locacao locacao = locacaoRepository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("Pessoa não encontrada com o id: " ));
         copyToDTO(dto, locacao);
         return toDTO(locacaoRepository.save(locacao));
 
@@ -62,9 +65,13 @@ public class LocacaoImpl implements LocacaoService{
     public void delete (Long id){
 
         if (!locacaoRepository.existsById(id)) {
-        throw new EntityNotFoundException("Condomínio não encontrado com ID: " + id);
-    }   locacaoRepository.deleteById(id);
-        
+        throw new ResourceNotFoundException("Condomínio não encontrado com ID: " + id);
+    }  
+    try{
+    locacaoRepository.deleteById(id);
+    }catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falha de integridade referencial");
+        }
     }
 
 

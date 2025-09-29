@@ -1,6 +1,6 @@
 package br.univille.fabsoft_backend.service.impl;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,8 @@ import br.univille.fabsoft_backend.repository.CondominioRepository;
 import br.univille.fabsoft_backend.repository.ImovelRepository;
 import br.univille.fabsoft_backend.repository.PessoaRepository;
 import br.univille.fabsoft_backend.service.CondominioService;
+import br.univille.fabsoft_backend.service.exeptions.DatabaseException;
+import br.univille.fabsoft_backend.service.exeptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -55,7 +57,7 @@ public class CondominioServiceImpl implements CondominioService{
 
         if (dto.getSindicoId() != null) {
 
-            Pessoa sindico = pessoaRepository.findById(dto.getSindicoId()).orElseThrow(() -> new EntityNotFoundException("Síndico (Pessoa) não encontrado com ID: "));
+            Pessoa sindico = pessoaRepository.findById(dto.getSindicoId()).orElseThrow(() -> new ResourceNotFoundException("Síndico (Pessoa) não encontrado com ID: "));
             
             condominio.setSindico(sindico);
         } 
@@ -68,14 +70,15 @@ public class CondominioServiceImpl implements CondominioService{
     @Override
     @Transactional
     public CondominioDTO update(Long id, CondominioDTO dto) {
+
         Condominio condominio = condominioRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: "));
+            .orElseThrow(() -> new ResourceNotFoundException("Condomínio não encontrado com ID: "));
 
         copyDtoToEntity(dto, condominio);
 
         if (dto.getSindicoId() != null) {
             Pessoa sindico = pessoaRepository.findById(dto.getSindicoId())
-                .orElseThrow(() -> new EntityNotFoundException("Síndico (Pessoa) não encontrado com ID: "));
+                .orElseThrow(() -> new ResourceNotFoundException("Síndico (Pessoa) não encontrado com ID: "));
             condominio.setSindico(sindico);
         } else {
             condominio.setSindico(null);
@@ -89,12 +92,16 @@ public class CondominioServiceImpl implements CondominioService{
 public void delete(Long id) {
     
     if (!condominioRepository.existsById(id)) {
-        throw new EntityNotFoundException("Condomínio não encontrado com ID: " + id);
+        throw new ResourceNotFoundException("recurso nao encontrado");
     }
+    try{
 
     condominioRepository.desassociarSindico(id);
     
     condominioRepository.deleteById(id);
+    }catch (DataIntegrityViolationException e) {
+        throw new DatabaseException("Falha de integridade referencial");
+    }
 }
 
 

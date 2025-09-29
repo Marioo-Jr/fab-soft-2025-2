@@ -1,5 +1,6 @@
 package br.univille.fabsoft_backend.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -11,8 +12,8 @@ import br.univille.fabsoft_backend.entity.TipoPessoa;
 import br.univille.fabsoft_backend.factory.PessoaFactory;
 import br.univille.fabsoft_backend.repository.PessoaRepository;
 import br.univille.fabsoft_backend.service.PessoaService;
-import jakarta.persistence.EntityNotFoundException;
-
+import br.univille.fabsoft_backend.service.exeptions.DatabaseException;
+import br.univille.fabsoft_backend.service.exeptions.ResourceNotFoundException;
 
 @Service
 public class PessoaServiceImpl implements PessoaService {
@@ -25,7 +26,8 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public PessoaDTO findById(Long id){
-        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada com o id: "));
+        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("Pessoa não encontrada com o id: "));
         return toDTO(pessoa);
 
     }
@@ -65,11 +67,15 @@ public class PessoaServiceImpl implements PessoaService {
     public void delete(Long id){
 
         if (!pessoaRepository.existsById(id)) {
-            throw new EntityNotFoundException("not found");
+            throw new ResourceNotFoundException("not found");
             
         }
+        try{
         pessoaRepository.deleteById(id);
-    }// nao consegui fazer o retorno do DELETE
+        }catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falha de integridade referencial");
+        }
+    }
 
     
     private PessoaDTO toDTO(Pessoa pessoa) {

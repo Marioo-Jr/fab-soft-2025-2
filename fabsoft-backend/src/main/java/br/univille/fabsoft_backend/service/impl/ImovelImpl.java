@@ -2,6 +2,7 @@ package br.univille.fabsoft_backend.service.impl;
 
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,8 @@ import br.univille.fabsoft_backend.repository.CondominioRepository;
 import br.univille.fabsoft_backend.repository.ImovelRepository;
 import br.univille.fabsoft_backend.repository.ProprietarioRepository;
 import br.univille.fabsoft_backend.service.ImovelService;
-import jakarta.persistence.EntityNotFoundException;
+import br.univille.fabsoft_backend.service.exeptions.DatabaseException;
+import br.univille.fabsoft_backend.service.exeptions.ResourceNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -31,7 +33,8 @@ public class ImovelImpl implements ImovelService {
     @Override
     @Transactional(readOnly = true)
     public ImovelDTO findById(Long id){
-        Imovel result = imovelRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Imóvel não encontrado com ID: " + id));
+        Imovel result = imovelRepository.findById(id).orElseThrow(
+            () -> new ResourceNotFoundException("Imóvel não encontrado com ID: " + id));
         return toDTO(result);
     }
 
@@ -46,10 +49,12 @@ public class ImovelImpl implements ImovelService {
     @Transactional
     public ImovelDTO insert (ImovelDTO dto){
         Condominio condominio = condominioRepository.findById(dto.getCondominioId())
-            .orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + dto.getCondominioId()));
+            .orElseThrow(
+                () -> new ResourceNotFoundException("Condomínio não encontrado com ID: " + dto.getCondominioId()));
 
         Proprietario proprietario = proprietarioRepository.findById(dto.getProprietarioId())
-            .orElseThrow(() -> new EntityNotFoundException("Proprietário não encontrado com ID: " + dto.getProprietarioId()));
+            .orElseThrow(
+                () -> new ResourceNotFoundException("Proprietário não encontrado com ID: " + dto.getProprietarioId()));
 
         Imovel imovel = toEntity(dto);
         imovel.setCondominio(condominio);
@@ -61,20 +66,23 @@ public class ImovelImpl implements ImovelService {
     @Override
     @Transactional
     public ImovelDTO update (Long id, ImovelDTO dto){
+
         Imovel imovel = imovelRepository.findById(id)
-            .orElseThrow((() -> new EntityNotFoundException("Imóvel não encontrado com ID: " + id)));
+            .orElseThrow((
+                () -> new ResourceNotFoundException("Imóvel não encontrado com ID: " + id)));
 
         CopyToEntity(dto, imovel);
 
         if (!Objects.equals(imovel.getCondominio().getId(), dto.getCondominioId())) {
             Condominio novoCondominio = condominioRepository.findById(dto.getCondominioId())
-                .orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + dto.getCondominioId()));
+                .orElseThrow(
+                    () -> new ResourceNotFoundException("Condomínio não encontrado com ID: " + dto.getCondominioId()));
             imovel.setCondominio(novoCondominio);
         }
 
         if (!Objects.equals(imovel.getProprietario().getId(), dto.getProprietarioId())) {
-            Proprietario novoProprietario = proprietarioRepository.findById(dto.getProprietarioId())
-                .orElseThrow(() -> new EntityNotFoundException("Proprietário não encontrado com ID: " + dto.getProprietarioId()));
+            Proprietario novoProprietario = proprietarioRepository.findById(dto.getProprietarioId()).orElseThrow(
+                () -> new ResourceNotFoundException("Proprietário não encontrado com ID: " + dto.getProprietarioId()));
             imovel.setProprietario(novoProprietario);
         }  
 
@@ -85,9 +93,13 @@ public class ImovelImpl implements ImovelService {
     @Transactional
     public void delete (Long id){
         if (!imovelRepository.existsById(id)) {
-            throw new EntityNotFoundException("Imóvel não encontrado com ID: " + id);
+            throw new ResourceNotFoundException("Imóvel não encontrado com ID: " + id);
         }
+        try{
         imovelRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falha de integridade referencial");
+        }
     }
 
     private ImovelDTO toDTO(Imovel imovel) {

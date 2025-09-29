@@ -1,6 +1,7 @@
  package br.univille.fabsoft_backend.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,8 @@ import br.univille.fabsoft_backend.DTO.EspacoDTO;
 import br.univille.fabsoft_backend.entity.Espaco;
 import br.univille.fabsoft_backend.repository.EspacoRepository;
 import br.univille.fabsoft_backend.service.EspacoService;
-import jakarta.persistence.EntityNotFoundException;
-
+import br.univille.fabsoft_backend.service.exeptions.DatabaseException;
+import br.univille.fabsoft_backend.service.exeptions.ResourceNotFoundException;
 @Service
 public class EspacoImpl implements EspacoService {
 
@@ -22,7 +23,9 @@ public class EspacoImpl implements EspacoService {
     @Override
     public EspacoDTO findById (Long id){
 
-        Espaco espaco = espacoRepository.findById(id).get();
+        Espaco espaco = espacoRepository.findById(id).orElseThrow((
+            () -> new ResourceNotFoundException("Imóvel não encontrado com ID: " + id)));
+        
         return toDTO(espaco);
 
     }
@@ -48,7 +51,7 @@ public class EspacoImpl implements EspacoService {
     public EspacoDTO update (Long id, EspacoDTO dto){
 
         Espaco espaco = espacoRepository.findById(id)
-            .orElseThrow((() -> new EntityNotFoundException("Imóvel não encontrado com ID: " + id)));
+            .orElseThrow((() -> new ResourceNotFoundException("Imóvel não encontrado com ID: " + id)));
         
         CopyToEntity(espaco, dto);
         
@@ -59,10 +62,15 @@ public class EspacoImpl implements EspacoService {
     public void delete (Long id){
 
         if (!espacoRepository.existsById(id)) {
-            throw new EntityNotFoundException("Imóvel não encontrado com ID: " + id);
+            throw new ResourceNotFoundException("Imóvel não encontrado com ID: " + id);
             
-        }espacoRepository.deleteById(id);
-
+        }
+        try {
+        espacoRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Falha de integridade referencial");
+        }
     }
 
 
