@@ -1,13 +1,23 @@
 <main class="container">
+    <h2>umEspacos</h2>
+    <button class="btn btn-primary" (click)="novo()" >Novo</button>
     <table class="">
         <thead>
             <tr>
                 <th>Nome</th>
+                <th>Descricao</th>
+                <th>id</th>
+                <th>Valor_Reserva</th>
+                <th>Capacidade_Maxima</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let umEspaco of listaEspacos">
                 <td>{{umEspaco.nome}}</td>
+                <td>{{umEspaco.descricao}}</td>
+                <td>{{umEspaco.valorReserva}}</td>
+                <td>{{umEspaco.capacidadeMaxima}}</td>
+                <td>{{umEspaco.id}}</td>
             </tr>
         </tbody>
     </table>
