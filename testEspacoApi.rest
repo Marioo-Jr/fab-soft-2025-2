@@ -13,6 +13,10 @@ Content-Type: application/json
 
 {
   
+  "nome": "mario seergio",
+  "descricao": "lalala",
+  "capacidadeMaxima": 1,
+  "valorReserva": 2
 }
 
 

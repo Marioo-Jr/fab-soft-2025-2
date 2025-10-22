@@ -13,4 +13,9 @@ export class EspacoService {
   getEspacos(){
     return this.http.get<Espaco[]>(this.apiURL)
   }
+  saveEspaco(espaco:Espaco){
+
+    return this.http.post(this.apiURL, espaco)
+
+  }
 }
