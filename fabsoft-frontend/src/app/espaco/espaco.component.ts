@@ -29,5 +29,9 @@ export class EspacoComponent {
     novo (){
       this.router.navigate(['espacos/novo'])
     }
+    alterar(espaco: Espaco){
+      this.router.navigate(['espacos/alterar',espaco.id])
+
+    }
   }
 

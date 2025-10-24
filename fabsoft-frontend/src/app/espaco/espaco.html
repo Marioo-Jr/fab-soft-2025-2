@@ -9,6 +9,7 @@
                 <th>id</th>
                 <th>Valor_Reserva</th>
                 <th>Capacidade_Maxima</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,10 @@
                 <td>{{umEspaco.valorReserva}}</td>
                 <td>{{umEspaco.capacidadeMaxima}}</td>
                 <td>{{umEspaco.id}}</td>
+                <td><button
+                    (click)="alterar(umEspaco)" 
+                    class="btn btn-secondary">
+                    Alterar</button></td> 
             </tr>
         </tbody>
     </table>
