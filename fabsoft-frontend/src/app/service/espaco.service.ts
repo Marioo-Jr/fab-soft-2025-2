@@ -23,4 +23,9 @@ export class EspacoService {
   getEspacoById(id: string){
     return this.http.get<Espaco>(this.apiURL + '/' + id)
   }
+
+  excluirEspaco(id:string){
+    return this.http.delete<Espaco>(this.apiURL + '/' + id)
+
+  }
 }

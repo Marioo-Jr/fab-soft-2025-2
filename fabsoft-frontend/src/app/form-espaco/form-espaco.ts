@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EspacoService } from '../service/espaco.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute,ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-form-espaco',
@@ -20,8 +20,16 @@ export class FormEspaco {
 
   constructor(
     private espacoService:EspacoService,
-    private router:Router
-  ){}
+    private router:Router,
+    private activeRouter: ActivatedRoute
+  ){
+    let id = this.activeRouter.snapshot.paramMap.get('id')
+    if(id){
+      this.espacoService .getEspacoById(id).subscribe(res =>{
+        this.espaco = res
+      })
+    }
+  }
 
   salvar(){
   
@@ -29,5 +37,7 @@ export class FormEspaco {
         this.router.navigate(['espacos'])
       })
   }
+
+
 
 }
