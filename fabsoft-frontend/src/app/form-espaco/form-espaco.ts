@@ -27,6 +27,7 @@ export class FormEspaco {
     if(id){
       this.espacoService .getEspacoById(id).subscribe(res =>{
         this.espaco = res
+        console.log(this.espaco);
       })
     }
   }

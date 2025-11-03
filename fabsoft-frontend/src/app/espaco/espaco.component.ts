@@ -26,8 +26,8 @@ export class EspacoComponent {
     private router:Router){}
     ngOnInit(){
       console.log('carregando espacos')
-      this.espacoService.getEspacos().subscribe(espacos =>{
-        this.listaEspacos = espacos
+      this.espacoService.getEspacos().subscribe(page =>{
+        this.listaEspacos = page.content
       })
 
     }
@@ -57,8 +57,8 @@ export class EspacoComponent {
             this.fecharConfirmacao()
             this.espacoService.getEspacos()
               .subscribe(
-                espacos => {
-                  this.listaEspacos = espacos
+                page => {
+                  this.listaEspacos = page.content
                 }
               )
           },

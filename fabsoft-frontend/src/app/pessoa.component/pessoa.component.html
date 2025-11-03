@@ -1,0 +1,29 @@
+<main class="container">
+    <h2>Pessoas</h2>
+    <button class="btn btn-primary" (click)="novo()">Novo</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Data nascimento</th>
+                <th>Telefone</th>
+                <th>Tipo pessoa</th>
+                <th>Endereço</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umPessoa of listaPessoas">
+                <td>{{ umPessoa.nome }}</td>
+                <td>{{ umPessoa.cpf }}</td>
+                <td>{{ umPessoa.email }}</td>
+                <td>{{ umPessoa.dataNascimento | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ umPessoa.telefone }}</td>
+                <td>{{ umPessoa.tipoPessoa }}</td>
+                <td>{{ umPessoa.endereco }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>

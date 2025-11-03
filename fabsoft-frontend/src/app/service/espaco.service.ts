@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Espaco } from '../model/espaco';
 import { HttpClient } from '@angular/common/http';
+import { Page } from '../model/page';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class EspacoService {
   constructor(private http:HttpClient){}
   
   getEspacos(){
-    return this.http.get<Espaco[]>(this.apiURL)
+    return this.http.get<Page>(this.apiURL)
   }
   saveEspaco(espaco:Espaco){
     if(espaco.id){

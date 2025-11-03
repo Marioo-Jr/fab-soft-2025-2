@@ -1,15 +1,13 @@
 <main class="container">
-    <h2>umEspacos</h2>
+    <h2>Espaços</h2>
     <button class="btn btn-primary" (click)="novo()" >Novo</button>
-    <table class="">
+    <table class="table">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Descricao</th>
-                <th>id</th>
-                <th>Valor_Reserva</th>
-                <th>Capacidade_Maxima</th>
-                <th></th>
+                <th>Valor Reserva</th>
+                <th>Capacidade Maxima</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +16,6 @@
                 <td>{{umEspaco.descricao}}</td>
                 <td>{{umEspaco.valorReserva}}</td>
                 <td>{{umEspaco.capacidadeMaxima}}</td>
-                <td>{{umEspaco.id}}</td>
                 <td><button
                     (click)="alterar(umEspaco)" 
                     class="btn btn-secondary">Alterar</button>

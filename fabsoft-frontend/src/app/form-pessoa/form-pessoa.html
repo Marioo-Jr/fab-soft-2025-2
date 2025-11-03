@@ -1,0 +1,66 @@
+<main class="container">
+    <h2>Pessoa</h2>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="txtNome">Nome</label>
+                <input type="text"
+                [(ngModel)]="pessoa.nome" 
+                class="form-control"
+                id = "txtNome">
+            </div>
+                
+            <div class="form-group">
+                <label for="txtCpf">CPF</label>
+                <input type="text"
+                [(ngModel)]="pessoa.cpf" 
+                class="form-control"
+                id = "txtCpf">
+            </div>
+
+            <div class="form-group">
+                <label for="txtDataNascimento">Data de nascimento</label>
+                <input type="text"
+                [(ngModel)]="pessoa.dataNascimento" 
+                class="form-control"
+                id = "txtDataNascimento">
+            </div>
+
+            <div class="form-group">
+                <label for="txtEmail">Email</label>
+                <input type="text"
+                [(ngModel)]="pessoa.email" 
+                class="form-control"
+                id = "txtEmail">
+            </div>
+
+            <div class="form-group">
+                <label for="txtTelefone">Telefone</label>
+                <input type="text"
+                [(ngModel)]="pessoa.telefone" 
+                class="form-control"
+                id = "txtTelefone">
+            </div>
+
+            <div class="form-group">
+                <label for="txtEndereço">Endereço</label>
+                <input type="text"
+                [(ngModel)]="pessoa.endereco" 
+                class="form-control"
+                id = "txtEndereço">
+            </div>
+
+            <div class="form-group">
+                <label for="txtTipoPessoa">Tipo pessoa (OBRIGATORIO)</label>
+                <input type="text"
+                [(ngModel)]="pessoa.tipoPessoa" 
+                class="form-control"
+                id = "txtTipoPessoa">
+            </div>
+
+        </div>
+        <button (click)="salvar()"
+        class="btn btn-primary">Salvar</button>
+    </div>
+</main>
