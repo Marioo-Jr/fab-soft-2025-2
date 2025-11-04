@@ -14,5 +14,7 @@ export const routes: Routes = [
     
     // pessoas
     {path:'pessoas', component:PessoaComponent},
-    {path:'pessoas/novo', component:FormPessoa}
+    {path:'pessoas/novo', component:FormPessoa},
+    {path:'pessoas/alterar/:id', component:FormPessoa}
+
 ];

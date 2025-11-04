@@ -18,7 +18,15 @@ export class PessoaService {
   }
   
   savePessoa(pessoa:Pessoa){
-    return this.http.post(this.apiURL, pessoa)
+    return this.http.post(this.apiURL,pessoa)
+  }
+
+  getPessoaById(id:string){
+    return this.http.get<Pessoa>(this.apiURL+'/'+id)
+
+  }
+  excluirPessoa(id:string){
+    return this.http.delete<Pessoa>(this.apiURL+'/'+id)
   }
 
 }
