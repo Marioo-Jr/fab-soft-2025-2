@@ -14,13 +14,16 @@ export class EspacoService {
   getEspacos(){
     return this.http.get<Page>(this.apiURL)
   }
+  
   saveEspaco(espaco:Espaco){
-    if(espaco.id){
-      return this.http.put(this.apiURL + "/" + espaco.id,espaco)
+      if (espaco.id){
+        return this.http.put(this.apiURL + '/' + espaco.id, espaco)
+  
+      }
+      return this.http.post(this.apiURL, espaco)
     }
-    return this.http.post(this.apiURL, espaco)
 
-  }
+
   getEspacoById(id: string){
     return this.http.get<Espaco>(this.apiURL + '/' + id)
   }

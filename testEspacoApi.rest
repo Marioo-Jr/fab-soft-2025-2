@@ -22,11 +22,11 @@ Content-Type: application/json
 
 
 ### Put update 
-PUT http://localhost:8080/api/v1/espacos/1
+PUT http://localhost:8080/api/v1/espacos/3
 Content-Type: application/json
 
 {
-  "nome": "Ana Algo",
+    "nome": "Ana Algo",
     "cpf": "555.666.777-88",
     "dataNascimento": "1992-10-20",
     "email": "ana.loc@email.com",
