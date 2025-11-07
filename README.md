@@ -129,9 +129,9 @@ classDiagram
     Locacao "1" -- "1" Imovel
     Imovel "1" -- "1" Condominio
     Imovel "1" -- "1" Proprietario
-    Condominio "1" -- "N" Espaco
-    Condominio "1" -- "N" Imovel
-    Espaco "1" -- "N" Reserva
+    Condominio "1" -- "*" Espaco
+    Condominio "1" -- "*" Imovel
+    Espaco "1" -- "*" Reserva
     Reserva "1" -- "1" Locatario
     Condominio "1" -- "1" Pessoa : sindico
 
