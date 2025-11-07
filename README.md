@@ -126,13 +126,13 @@ title: Diagrama de Entidades
 ---
 
 classDiagram
-    Locacao "*" --> "1" Locatario
-    Locacao "*" --> "1" Imovel
-    Imovel "*" --> "1" Condominio
-    Imovel "*" --> "1" Proprietario
-    Espaco "*" --> "1" Condominio
-    Reserva "*" --> "1" Espaco
-    Reserva "*" --> "1" Locatario
+    Locacao "1" -- "1" Imovel
+    Imovel "1" -- "1" Condominio
+    Imovel "1" -- "1" Proprietario
+    Condominio "1" -- "N" Espaco
+    Condominio "1" -- "N" Imovel
+    Espaco "1" -- "N" Reserva
+    Reserva "1" -- "1" Locatario
     Condominio "1" -- "1" Pessoa : sindico
 
     Pessoa <|-- Proprietario
