@@ -1,0 +1,24 @@
+<main class="container">
+    <h2>Locacoes</h2>
+        <button class="btn btn-primary" (click)="novo()">Novo</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Inicio da locacao</th>
+                <th>fim da locacao</th>
+                <th>valor do aluguel</th>
+                <th>imovel</th>
+                <th>locatario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umLocacao of listaLocacao">
+                <td>{{ umLocacao.inicioLocacao | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ umLocacao.fimLocacao | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ umLocacao.valorAluguel }}</td>
+                <td>{{ umLocacao.imovelId }}</td>
+                <td>{{ umLocacao.locatarioId }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>

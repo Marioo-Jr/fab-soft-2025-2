@@ -1,0 +1,55 @@
+<main class="container">
+    <h2>Locacao</h2>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="txtNome">inicio da Locacao</label>
+                <input type="text"
+                [(ngModel)]="locacao.inicioLocacao"
+                class="form-control"
+                id = "txtinicioLocacao">
+            </div>
+
+            <div class="form-group">
+                <label for="txtNome">fim da Locacao</label>
+                <input type="text"
+                [(ngModel)]="locacao.fimLocacao"
+                class="form-control"
+                id = "txtfimLocacao">
+            </div>
+
+            <div class="form-group">
+                <label for="txtValorAluguel">valor do aluguel</label>
+                <input type="text"
+                [(ngModel)]="locacao.valorAluguel"
+                class="form-control"
+                id = "txtvalorAluguel">
+            </div>
+
+            <div class="form-group">
+                <label for="txtImovelId">Imovel</label>
+                <input type="text"
+                [(ngModel)]="locacao.imovelId"
+                class="form-control"
+                id = "txtImovelId">
+            </div>
+
+
+            <div class="form-group">
+                <label for="txtLocatarioId">locatario</label>
+                <input type="text"
+                [(ngModel)]="locacao.locatarioId"
+                class="form-control"
+                id = "txtLocatarioId">
+            </div>
+
+
+
+            <!-- imovel, locatario -->
+
+        </div>
+        <button (click)="salvar()"
+        class="btn btn-primary">Salvar</button>
+    </div>
+</main>
