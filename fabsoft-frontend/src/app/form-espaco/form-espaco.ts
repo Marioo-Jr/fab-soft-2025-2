@@ -10,9 +10,7 @@ import { Router,ActivatedRoute,ParamMap } from '@angular/router';
   selector: 'app-form-espaco',
   imports: [HttpClientModule, CommonModule, FormsModule],
   templateUrl: './form-espaco.html',
-  styleUrl: './form-espaco.css',
-  providers: [EspacoService, Router]
-
+  styleUrl: './form-espaco.css'
 })
 export class FormEspaco {
 

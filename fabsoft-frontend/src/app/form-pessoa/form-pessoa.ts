@@ -10,9 +10,7 @@ import { Router,ActivatedRoute, ParamMap } from '@angular/router';
   selector: 'app-form-pessoa',
   imports: [HttpClientModule,CommonModule,FormsModule],
   templateUrl: './form-pessoa.html',
-  styleUrl: './form-pessoa.css',
-  providers: [PessoaService, Router]
-
+  styleUrl: './form-pessoa.css'
 })
 export class FormPessoa {
 

@@ -11,8 +11,7 @@ import { LocacaoService } from '../service/locacao.service';
   selector: 'app-form-locacao',
   imports: [HttpClientModule,CommonModule,FormsModule],
   templateUrl: './form-locacao.html',
-  styleUrl: './form-locacao.css',
-  providers: [LocacaoService, Router]
+  styleUrl: './form-locacao.css'
 })
 export class FormLocacao {
 
