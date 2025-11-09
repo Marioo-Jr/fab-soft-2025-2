@@ -7,6 +7,8 @@ import { LocacaoComponent } from './locacao.component/locacao.component';
 import { FormLocacao } from './form-locacao/form-locacao';
 import { ImovelComponent } from './imovel.component/imovel.component';
 import { FormImovel } from './form-imovel/form-imovel';
+import { CondominioComponent } from './condominio.component/condominio.component';
+import { FormCondominio } from './form-condominio/form-condominio';
 
 
 export const routes: Routes = [
@@ -32,4 +34,8 @@ export const routes: Routes = [
     {path:'imoveis/alterar/:id', component:FormImovel},
 
 
+    // Concominio
+    {path:'condominios', component:CondominioComponent},
+    {path:'condominios/novo', component:FormCondominio},
+    {path:'condominios/alterar/:id', component:FormCondominio}
 ];

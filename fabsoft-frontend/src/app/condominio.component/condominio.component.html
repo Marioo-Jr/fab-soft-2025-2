@@ -1,0 +1,52 @@
+<main class="container">
+    <h2>Condominios</h2>
+    <button class="btn btn-primary" (click)="novo()">Novo</button>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>CNPJ</th>
+                
+                <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let umCondominio of listaCondominios">
+                <td>{{ umCondominio.nome }}</td>
+                <td>{{ umCondominio.endereco }}</td>
+                <td>{{ umCondominio.cnpj }}</td>
+                
+                <td>
+                    <button
+                    (click)="alterar(umCondominio)"
+                    class="btn btn-secondary">Alterar</button>
+                    
+                    <button
+                    (click)="abrirConfirmacao(umCondominio)"class="btn btn-danger">Excluir</button>
+                
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<div class="modal fade" #myModal tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir condominio</h5>
+            </div>
+            <div class="modal-body">
+            Confirma a exclusão do condominio?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>

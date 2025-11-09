@@ -1,0 +1,35 @@
+<main class="container">
+    <h2>Pessoa</h2>
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="form-group">
+                <label for="txtNome">Nome</label>
+                <input type="text"
+                [(ngModel)]="condominio.nome"
+                class="form-control"
+                id = "txtNome">
+            </div>
+
+            <div class="form-group">
+                <label for="txtEndereço">Endereço</label>
+                <input type="text"
+                [(ngModel)]="condominio.endereco"
+                class="form-control"
+                id = "txtEndereço">
+            </div>
+
+            <div class="form-group">
+                <label for="txtCNPJ">CNPJ</label>
+                <input type="text"
+                [(ngModel)]="condominio.cnpj"
+                class="form-control"
+                id = "txtCNPJ">
+            </div>
+
+        </div>
+        <button (click)="salvar()"
+        class="btn btn-primary">Salvar</button>
+    </div>
+</main>
+
