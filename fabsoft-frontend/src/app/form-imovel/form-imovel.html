@@ -1,0 +1,58 @@
+<main class="container">
+    <h2>Imovel</h2>
+    <div class="card">
+        <div class="card-body">
+
+            <div class="form-group">
+                <label for="txtNumro">Numero</label>
+                <input type="text"
+                [(ngModel)]="imovel.numero"
+                class="form-control"
+                id = "txtNumro">
+            </div>
+
+            <div class="form-group">
+                <label for="txtBloco">Bloco</label>
+                <input type="text"
+                [(ngModel)]="imovel.bloco"
+                class="form-control"
+                id = "txtBloco">
+            </div>
+
+            <div class="form-group">
+                <label for="txtqtdeQuartos">Quantidade de quartos</label>
+                <input type="text"
+                [(ngModel)]="imovel.qtdeQuartos"
+                class="form-control"
+                id = "txtqtdeQuartos">
+            </div>
+
+            <div class="form-group">
+                <label for="txtqtdeBanheiros">Quantidade de banheiros</label>
+                <input type="text"
+                [(ngModel)]="imovel.qtdeBanheiros"
+                class="form-control"
+                id = "txtqtdeBanheiros">
+            </div>
+
+            <div class="form-group">
+                <label for="txtvagaGaragem">Quantidade de vagas de garagem</label>
+                <input type="text"
+                [(ngModel)]="imovel.vagaGaragem"
+                class="form-control"
+                id = "txtvagaGaragem">
+            </div>
+
+
+        </div>
+        <button (click)="salvar()"
+        class="btn btn-primary">Salvar</button>
+    </div>
+</main>
+<!-- 
+id:number;
+    bloco:string;
+    qtdeQuartos:number;
+    qtdeBanheiros:number;
+    vagaGaragem:number;
+    statusImovel:string -->

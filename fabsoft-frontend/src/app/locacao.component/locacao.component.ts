@@ -20,7 +20,7 @@ export class LocacaoComponent {
   listaLocacao: Locacao[] = [];
   @ViewChild('myModal') modalElement: ElementRef;
   private modal: bootstrap.Modal;
-  private pessoaSelecionada!: Locacao;
+  private imovelSelecionado!: Locacao;
 
   constructor(
     private locacaoService:LocacaoService,
@@ -49,7 +49,7 @@ export class LocacaoComponent {
   }
 
   abrirConfirmacao(locacao:Locacao){
-      this.pessoaSelecionada = locacao
+      this.imovelSelecionado = locacao
       this.modal = new bootstrap.Modal(this.modalElement.nativeElement)
       this.modal.show()
 
@@ -60,7 +60,7 @@ export class LocacaoComponent {
     }
 
     confirmarExclusao(){
-      this.locacaoService.excluirLocacao(this.pessoaSelecionada.id.toString())
+      this.locacaoService.excluirLocacao(this.imovelSelecionado.id.toString())
         .subscribe(
           () => {
             this.fecharConfirmacao()

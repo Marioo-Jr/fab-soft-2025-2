@@ -37,7 +37,7 @@ constructor(
   salvar(){
     this.locacaoService.saveLocacao(this.locacao)
       .subscribe(resultado => {
-          this.router.navigate(['pessoas'])
+          this.router.navigate(['locacoes'])
     })
   }
 

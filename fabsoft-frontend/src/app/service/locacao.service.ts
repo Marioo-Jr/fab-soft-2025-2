@@ -17,7 +17,11 @@ export class LocacaoService {
   }
 
   saveLocacao(locacao:Locacao){
-    return this.http.post(this.apiURL,locacao)
+    if (locacao.id){ 
+      return this.http.put(this.apiURL + '/' + locacao.id, locacao)
+
+    }
+    return this.http.post(this.apiURL, locacao)
   }
 
   getLocacaoById(id:string){

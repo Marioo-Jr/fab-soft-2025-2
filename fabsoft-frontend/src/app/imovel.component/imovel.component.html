@@ -1,0 +1,64 @@
+<main class="container">
+    <h2>Imoveis</h2>
+    <button class="btn btn-primary" (click)="novo()">Novo</button>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Numero</th>
+                <th>Bloco</th>
+                <th>Quantidade de quartos</th>
+                <th>Quantidade de banheiros</th>
+                <th>Quantidade de vagas de Garagem</th>
+                
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let umImovel of listaImoveis">
+                <td>{{ umImovel.numero }}</td>
+                <td>{{ umImovel.bloco }}</td>
+                <td>{{ umImovel.qtdeQuartos }}</td>
+                <td>{{ umImovel.qtdeBanheiros }}</td>
+                <td>{{ umImovel.vagaGaragem }}</td>
+
+                <td><button
+                    (click)="alterar(umImovel)"
+                    class="btn btn-secondary">alterar</button>
+                    
+                    <button
+                    (click)="abrirConfirmacao(umImovel)"class="btn btn-danger">Excluir</button>
+                    
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<div class="modal fade" #myModal tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir imovel</h5>
+            </div>
+            <div class="modal-body">
+            Confirma a exclusão do imovel?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+id:number;
+    bloco:string;
+    qtdeQuartos:number;
+    qtdeBanheiros:number;
+    vagaGaragem:number;
+    statusImovel:string -->
