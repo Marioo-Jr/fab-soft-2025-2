@@ -1,11 +1,12 @@
 export class Locacao {
+    
     id:number
     inicioLocacao:Date;
     fimLocacao:Date;
     valorAluguel:number;
     imovelId:number;
     locatarioId:number;
-    //statusLocacao:StatusLocacao;
+    statusLocacao:string;
 
 
 }

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { PessoaService } from '../service/pessoa.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Locacao } from '../model/locacao';
 import { LocacaoService } from '../service/locacao.service';
 import { Router } from '@angular/router';
+import { Component,ElementRef, ViewChild } from '@angular/core';
+import * as bootstrap from 'bootstrap'
 
 
 @Component({
@@ -17,16 +17,18 @@ import { Router } from '@angular/router';
 })
 export class LocacaoComponent {
 
-  locacao:Locacao = new Locacao()
   listaLocacao: Locacao[] = [];
-  
+  @ViewChild('myModal') modalElement: ElementRef;
+  private modal: bootstrap.Modal;
+  private pessoaSelecionada!: Locacao;
 
   constructor(
     private locacaoService:LocacaoService,
     private router:Router
+    
   ){}
 
-  ngOninit(){
+  ngOnInit(){
     console.log('Carregando Locacoes ...');
 
     this.locacaoService.getLocacoes().subscribe (page => {
@@ -39,5 +41,40 @@ export class LocacaoComponent {
   novo(){
     this.router.navigate(['locacoes/novo'])
   }
+
+  alterar(locacao:Locacao){
+
+    this.router.navigate(['locacoes/alterar',locacao.id])
+
+  }
+
+  abrirConfirmacao(locacao:Locacao){
+      this.pessoaSelecionada = locacao
+      this.modal = new bootstrap.Modal(this.modalElement.nativeElement)
+      this.modal.show()
+
+    }
+
+    fecharConfirmacao(){
+      this.modal.hide()
+    }
+
+    confirmarExclusao(){
+      this.locacaoService.excluirLocacao(this.pessoaSelecionada.id.toString())
+        .subscribe(
+          () => {
+            this.fecharConfirmacao()
+            this.locacaoService.getLocacoes()
+            .subscribe (
+                page => {
+                  this.listaLocacao = page.content
+                }
+            )
+          }, 
+          error =>{
+            console.log('Error ao exlcuir locacao', error)
+          }
+      )
+    }
 
 }

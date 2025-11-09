@@ -48,7 +48,6 @@ export class PessoaComponent {
     }
     
     abrirConfirmacao(pessoa:Pessoa){
-      console.log("alo")
       this.pessoaSelecionada = pessoa
       this.modal = new bootstrap.Modal(this.modalElement.nativeElement)
       this.modal.show()

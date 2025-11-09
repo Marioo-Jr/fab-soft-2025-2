@@ -7,7 +7,7 @@ import { Locacao } from '../model/locacao';
   providedIn: 'root'
 })
 export class LocacaoService {
-  apiURL = 'http//localhost:8080/api/v1/locacoes'
+  apiURL = 'http://localhost:8080/api/v1/locacoes'
 
   
   constructor(private http:HttpClient){}
@@ -19,5 +19,19 @@ export class LocacaoService {
   saveLocacao(locacao:Locacao){
     return this.http.post(this.apiURL,locacao)
   }
+
+  getLocacaoById(id:string){
+
+    return this.http.get<Locacao>(this.apiURL+'/'+id)
+
+  }
+
+  excluirLocacao(id:string){
+
+    return this.http.delete<Locacao>(this.apiURL+'/'+ id)
+
+  }
+
+  
 
 }

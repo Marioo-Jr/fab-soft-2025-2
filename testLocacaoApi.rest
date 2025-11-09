@@ -12,7 +12,12 @@ POST http://localhost:8080/api/v1/locacoes
 Content-Type: application/json
 
 {
-  
+  "inicioLocacao": null,
+  "fimLocacao": null,
+  "valorAluguel": null,
+  "imovelId": null,
+  "locatarioId": null,
+  "statusLocacao": "ATIVA"
 }
 
 

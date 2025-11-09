@@ -21,8 +21,10 @@ export const routes: Routes = [
 
     // locacoes
     {path:'locacoes', component:LocacaoComponent},
-    {path:'locacoes/novo', component:FormLocacao}
+    {path:'locacoes/novo', component:FormLocacao},
+    {path:'locacoes/alterar/:id', component:FormLocacao},
 
+    
 
 
 ];

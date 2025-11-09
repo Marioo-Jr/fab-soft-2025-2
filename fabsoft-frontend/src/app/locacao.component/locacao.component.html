@@ -9,6 +9,9 @@
                 <th>valor do aluguel</th>
                 <th>imovel</th>
                 <th>locatario</th>
+
+                <th></th>
+
             </tr>
         </thead>
         <tbody>
@@ -18,7 +21,33 @@
                 <td>{{ umLocacao.valorAluguel }}</td>
                 <td>{{ umLocacao.imovelId }}</td>
                 <td>{{ umLocacao.locatarioId }}</td>
+                <td>
+                    <button
+                    (click)="alterar(umLocacao)"
+                    
+                    class="btn btn-secondary">alterar</button>
+
+                    <button
+                    (click)="abrirConfirmacao(umLocacao)"class="btn btn-danger">Excluir</button>
+                </td>
+        
             </tr>
         </tbody>
     </table>
 </main>
+<div class="modal fade" #myModal tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir espaco</h5>
+            </div>
+            <div class="modal-body">
+            Confirma a exclusão do espaco?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>

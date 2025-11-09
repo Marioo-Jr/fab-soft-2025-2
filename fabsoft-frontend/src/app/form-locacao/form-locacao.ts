@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Locacao } from '../model/locacao';
 import { LocacaoService } from '../service/locacao.service';
+import { Router,ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -20,8 +20,19 @@ locacao:Locacao = new Locacao
 
 constructor(
     private locacaoService: LocacaoService,
-    private router:Router
-  ){}
+    private router:Router,
+    private activateRoute:ActivatedRoute
+  ){
+
+    let id = this.activateRoute.snapshot.paramMap.get('id');
+    if(id){
+      this.locacaoService.getLocacaoById(id)
+        .subscribe(res =>{
+          this.locacao = res
+        })
+    }
+
+  }
 
   salvar(){
     this.locacaoService.saveLocacao(this.locacao)
@@ -29,7 +40,9 @@ constructor(
           this.router.navigate(['pessoas'])
     })
   }
-  
+
+
+
 
 
 }
