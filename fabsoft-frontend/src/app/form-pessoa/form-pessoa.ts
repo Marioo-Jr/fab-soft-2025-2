@@ -11,7 +11,7 @@ import { Router,ActivatedRoute, ParamMap } from '@angular/router';
   imports: [HttpClientModule,CommonModule,FormsModule],
   templateUrl: './form-pessoa.html',
   styleUrl: './form-pessoa.css',
-  providers: [PessoaService, Router]
+  //providers: [PessoaService, Router]
 
 })
 export class FormPessoa {

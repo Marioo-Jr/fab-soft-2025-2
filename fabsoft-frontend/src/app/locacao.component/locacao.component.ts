@@ -13,7 +13,7 @@ import * as bootstrap from 'bootstrap'
     HttpClientModule,CommonModule],
   templateUrl: './locacao.component.html',
   styleUrl: './locacao.component.css',
-  providers: [LocacaoService,Router]
+  //providers: [LocacaoService,Router]
 })
 export class LocacaoComponent {
 

@@ -12,7 +12,7 @@ import { Router,ActivatedRoute, ParamMap } from '@angular/router';
   imports: [HttpClientModule,CommonModule,FormsModule],
   templateUrl: './form-locacao.html',
   styleUrl: './form-locacao.css',
-  providers: [LocacaoService, Router]
+  //providers: [LocacaoService, Router]
 })
 export class FormLocacao {
 

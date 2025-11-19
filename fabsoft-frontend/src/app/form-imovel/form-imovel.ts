@@ -12,7 +12,7 @@ import { Router,ActivatedRoute,ParamMap} from '@angular/router';
   imports: [HttpClientModule,CommonModule,FormsModule],
   templateUrl: './form-imovel.html',
   styleUrl: './form-imovel.css',
-  providers: [ImovelService, Router]
+  //providers: [ImovelService, Router]
 })
 export class FormImovel {
 

@@ -15,7 +15,7 @@ import * as bootstrap from 'bootstrap'
   ],
   templateUrl: './condominio.component.html',
   styleUrl: './condominio.component.css',
-  providers: [CondominioService,Router]
+  //providers: [CondominioService,Router]
 
 })
 export class CondominioComponent {

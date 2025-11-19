@@ -1,0 +1,32 @@
+.hero {
+    background-color: #0f172a;
+    padding-bottom: 5rem !important;
+}
+
+.hover-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: 1px solid #f1f5f9 !important;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+    border-color: #e2e8f0 !important;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Utilitários para cores suaves de fundo */
+.bg-primary-subtle { background-color: #e0f2fe; }
+.bg-success-subtle { background-color: #dcfce7; }
+.bg-info-subtle { background-color: #e0e7ff; }
+.bg-warning-subtle { background-color: #fef9c3; }
+.bg-danger-subtle { background-color: #fee2e2; }

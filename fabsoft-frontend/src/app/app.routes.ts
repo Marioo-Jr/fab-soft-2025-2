@@ -9,9 +9,12 @@ import { ImovelComponent } from './imovel.component/imovel.component';
 import { FormImovel } from './form-imovel/form-imovel';
 import { CondominioComponent } from './condominio.component/condominio.component';
 import { FormCondominio } from './form-condominio/form-condominio';
+import { LandingPageComponent } from './landing-page.component/landing-page.component';
 
 
 export const routes: Routes = [
+
+    { path: '', component: LandingPageComponent, pathMatch: 'full' },
 
     // espacos
     {path:'espacos', component:EspacoComponent},

@@ -12,7 +12,7 @@ import * as bootstrap from 'bootstrap'
     HttpClientModule,CommonModule],
   templateUrl: './pessoa.component.html',
   styleUrl: './pessoa.component.css',
-  providers: [PessoaService, Router]
+  //providers: [PessoaService, Router]
 })
 
 export class PessoaComponent {

@@ -11,7 +11,7 @@ import * as bootstrap from 'bootstrap';
   imports: [HttpClientModule, CommonModule],
   templateUrl: './espaco.html',
   styleUrl: './espaco.css',
-  providers:[EspacoService,Router]
+  //providers:[EspacoService,Router]
 })
 export class EspacoComponent {
 

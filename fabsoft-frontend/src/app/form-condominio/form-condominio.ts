@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   imports: [HttpClientModule,CommonModule,FormsModule],
   templateUrl: './form-condominio.html',
   styleUrl: './form-condominio.css',
-  providers: [CondominioService, Router]
+  //providers: [CondominioService, Router]
 })
 export class FormCondominio {
 

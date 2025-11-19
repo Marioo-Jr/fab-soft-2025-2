@@ -13,7 +13,7 @@ import * as bootstrap from 'bootstrap'
   imports: [HttpClientModule,CommonModule],
   templateUrl: './imovel.component.html',
   styleUrl: './imovel.component.css',
-  providers: [ImovelService,Router]
+  //providers: [ImovelService,Router]
 })
 export class ImovelComponent {
 

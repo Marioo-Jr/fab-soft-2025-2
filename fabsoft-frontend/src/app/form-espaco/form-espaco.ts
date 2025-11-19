@@ -11,7 +11,7 @@ import { Router,ActivatedRoute,ParamMap } from '@angular/router';
   imports: [HttpClientModule, CommonModule, FormsModule],
   templateUrl: './form-espaco.html',
   styleUrl: './form-espaco.css',
-  providers: [EspacoService, Router]
+  //providers: [EspacoService, Router]
 
 })
 export class FormEspaco {
