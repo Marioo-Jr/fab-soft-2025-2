@@ -9,12 +9,17 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
+    # Adiciona permissões para ler o repositório e escrever no registro de pacotes (GHCR)
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-      # Checkout the repository
+      # 1. Faz o checkout do código
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Log in to GitHub Container Registry
+      # 2. Faz login no GitHub Container Registry
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -22,8 +27,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build and push Docker image to GitHub Container Registry
+      # 3. Converte o nome do repositório para minúsculas e salva em uma variável de ambiente
+      - name: Convert repository name to lowercase
+        run: |
+          echo "REPO_LC=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+
+      # 4. Compila e envia a imagem Docker usando a variável em minúsculas (env.REPO_LC)
       - name: Build and Push Docker Image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/projfabsoftbackend:${{ github.run_number }} ./fabsoft-backend
-          docker push ghcr.io/${{ github.repository }}/projfabsoftbackend:${{ github.run_number }}
+          docker build -t ghcr.io/${{ env.REPO_LC }}/projfabsoftbackend:${{ github.run_number }} ./fabsoft-backend
+          docker push ghcr.io/${{ env.REPO_LC }}/projfabsoftbackend:${{ github.run_number }}

@@ -41,6 +41,7 @@ export class PessoaComponent {
       this.router.navigate(['pessoas/novo'])
 
     }
+    
 
     alterar(pessoa:Pessoa){
       this.router.navigate(['pessoas/alterar',pessoa.id]);
