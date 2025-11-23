@@ -32,4 +32,7 @@ export class EspacoService {
     return this.http.delete<Espaco>(this.apiURL + '/' + id)
 
   }
+
+
+  
 }

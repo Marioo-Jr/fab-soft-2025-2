@@ -1,3 +1,5 @@
+import { Condominio } from "./condominio";
+
 export class Imovel {
 
     id:number;
@@ -6,8 +8,8 @@ export class Imovel {
     qtdeQuartos:number;
     qtdeBanheiros:number;
     vagaGaragem:number;
-    //statusImovel:string
-
+    statusImovel:string
+    condominio:Condominio;
 }
 
 // private Long id;

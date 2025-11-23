@@ -33,6 +33,13 @@
                 [(ngModel)]="espaco.valorReserva" 
                 class="form-control"
                 id = "txtValorReserva">
+            </div>
+            
+            <div class="form-group">
+                <label for="txtCondominio">Condominio</label>
+                <select class="form-select" [(ngModel)]="espaco.condominio" [compareWith]="comparaCondominios">
+                    <option *ngFor="let umCondominio of listaCondominio" [ngValue]="umCondominio">{{umCondominio.nome}}</option>
+                </select>
             </div> 
             
         </div>

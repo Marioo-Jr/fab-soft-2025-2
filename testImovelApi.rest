@@ -20,7 +20,7 @@ Content-Type: application/json
   "vagaGaragem": 1,
   "statusImovel": "DISPONIVEL",
   "condominioId": 1,
-  "proprietarioId": 1
+  "proprietarioId": 2
 }
 
 //PARA ESSE INSERT FUNCIONAR FAÇA PRIMEIRO O DO CONDOMINIO E DPS PESSOA.
