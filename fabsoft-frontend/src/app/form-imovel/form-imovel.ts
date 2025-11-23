@@ -61,7 +61,7 @@ export class FormImovel {
         condominioId: this.imovel.condominio ? this.imovel.condominio.id : null,
         proprietarioId: this.imovel.proprietario ? this.imovel.proprietario.id : null
     };
-    this.imovelService.saveImovel(this.imovel)
+    this.imovelService.saveImovel(imovelDTO)
       .subscribe(resultado =>{
         this.router.navigate(['imoveis'])
       })
