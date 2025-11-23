@@ -52,11 +52,17 @@
             </div>
 
             <div class="form-group">
-                <label for="txtTipoPessoa">Tipo pessoa (OBRIGATORIO)</label>
-                <input type="text"
-                [(ngModel)]="pessoa.tipoPessoa" 
-                class="form-control"
-                id = "txtTipoPessoa">
+                <label for="txtTipoPessoa">Tipo Pessoa</label>
+                <select 
+                    [(ngModel)]="pessoa.tipoPessoa" 
+                    class="form-control"
+                    id = "txtTipoPessoa"
+                    name="tipoPessoa">
+
+                    <option *ngFor="let opcao of opcoesTipoPessoa" [ngValue]="opcao.value">
+                        {{ opcao.label }}
+                    </option>
+                </select>
             </div>
 
         </div>

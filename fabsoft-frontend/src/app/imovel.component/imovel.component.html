@@ -1,41 +1,65 @@
 <main class="container">
-    <h2>Imoveis</h2>
-    <button class="btn btn-primary" (click)="novo()">Novo</button>
-    <table class="table">
-        <thead>
-            <tr>
+    <h2>Imóveis</h2>
+    <button class="btn btn-primary mb-3" (click)="novo()">Novo</button>
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Número</th>
+                    <th>Bloco</th>
+                    <th>Condomínio</th>
+                    <th>Proprietário</th>
+                    <th>Qtd. Quartos</th>
+                    <th>Qtd. Banheiros</th>
+                    <th>Vagas Garagem</th>
+                    <th>Status</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let umImovel of listaImoveis">
+                    <td>{{ umImovel.numero }}</td>
+                    <td>{{ umImovel.bloco }}</td>
+                    
+                    <td>{{ umImovel.nomeCondominio || 'Não informado' }}</td>
+                    
+                    <td>{{ umImovel.nomeProprietario || 'Não informado' }}</td>
+                    
+                    <td>{{ umImovel.qtdeQuartos }}</td>
+                    <td>{{ umImovel.qtdeBanheiros }}</td>
+                    <td>{{ umImovel.vagaGaragem }}</td>
+                    
+                    
+                    <td>
+                        <span class="badge rounded-pill" 
+                              [ngClass]="{
+                                'text-bg-success': umImovel.statusImovel === 'DISPONIVEL',
+                                'text-bg-danger': umImovel.statusImovel === 'OCUPADO',
+                                'text-bg-warning': umImovel.statusImovel === 'MANUTENCAO'
+                              }">
+                            {{ umImovel.statusImovel }}
+                        </span>
+                    </td>
 
-                <th>Numero</th>
-                <th>Bloco</th>
-                <th>Quantidade de quartos</th>
-                <th>Quantidade de banheiros</th>
-                <th>Quantidade de vagas de Garagem</th>
+                    <td class="text-end">
+                        <button (click)="alterar(umImovel)" class="btn btn-sm btn-secondary me-2">
+                            Alterar
+                        </button>
+                        <button (click)="abrirConfirmacao(umImovel)" class="btn btn-sm btn-danger">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
                 
-                <th></th>
-
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr *ngFor="let umImovel of listaImoveis">
-                <td>{{ umImovel.numero }}</td>
-                <td>{{ umImovel.bloco }}</td>
-                <td>{{ umImovel.qtdeQuartos }}</td>
-                <td>{{ umImovel.qtdeBanheiros }}</td>
-                <td>{{ umImovel.vagaGaragem }}</td>
-
-                <td><button
-                    (click)="alterar(umImovel)"
-                    class="btn btn-secondary">alterar</button>
-                    
-                    <button
-                    (click)="abrirConfirmacao(umImovel)"class="btn btn-danger">Excluir</button>
-                    
-                </td>
-
-            </tr>
-        </tbody>
-    </table>
+                <tr *ngIf="listaImoveis.length === 0">
+                    <td colspan="9" class="text-center py-4 text-muted">
+                        Nenhum imóvel cadastrado.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <div class="modal fade" #myModal tabindex="-1" role="dialog">

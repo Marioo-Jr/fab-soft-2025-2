@@ -36,7 +36,9 @@ public class Locacao {
     @JoinColumn(name = "imovel")
     private Imovel imovel;
 
-
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "locatario_id")
+    private Pessoa locatario;
 
     public Locacao (){}
 
@@ -107,6 +109,20 @@ public class Locacao {
 
     public void setStatusLocacao(StatusLocacao statusLocacao) {
         this.statusLocacao = statusLocacao;
+    }
+
+
+
+
+    public Pessoa getLocatario() {
+        return locatario;
+    }
+
+
+
+
+    public void setLocatario(Pessoa locatario) {
+        this.locatario = locatario;
     }
 
 

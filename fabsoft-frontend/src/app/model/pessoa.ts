@@ -7,6 +7,7 @@ export class Pessoa {
     telefone:string;
     tipoPessoa:string;
     endereco:string;
+    
 }
 
 // private long id;

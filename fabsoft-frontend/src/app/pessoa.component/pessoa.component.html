@@ -1,6 +1,7 @@
 <main class="container">
     <h2>Pessoas</h2>
     <button class="btn btn-primary" (click)="novo()">Novo</button>
+    
     <table class="table">
         <thead>
             <tr>
@@ -11,9 +12,7 @@
                 <th>Telefone</th>
                 <th>Tipo pessoa</th>
                 <th>Endereço</th>
-
                 <th></th>
-                
             </tr>
         </thead>
         <tbody>
@@ -25,11 +24,9 @@
                 <td>{{ umPessoa.telefone }}</td>
                 <td>{{ umPessoa.tipoPessoa }}</td>
                 <td>{{ umPessoa.endereco }}</td>
-                <td><button
-                    (click)="alterar(umPessoa)"class="btn btn-secondary">Alterar</button>
-                    
-                    <button
-                    (click)="abrirConfirmacao(umPessoa)"class="btn btn-danger">Excluir</button>
+                <td>
+                    <button (click)="alterar(umPessoa)" class="btn btn-secondary">Alterar</button>
+                    <button (click)="abrirConfirmacao(umPessoa)" class="btn btn-danger">Excluir</button>
                 </td>
             </tr>
         </tbody>
@@ -40,14 +37,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Excluir espaco</h5>
+                <h5 class="modal-title">Excluir Pessoa</h5>
             </div>
             <div class="modal-body">
-            Confirma a exclusão do cliente?
+                Confirma a exclusão desta pessoa?
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+                <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
             </div>
         </div>
     </div>

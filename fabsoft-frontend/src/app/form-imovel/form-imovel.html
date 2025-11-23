@@ -43,12 +43,33 @@
                 id = "txtvagaGaragem">
             </div>
 
+            <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="selStatus" class="form-label fw-bold text-primary">Status</label>
+                        <select id="selStatus" class="form-select" [(ngModel)]="imovel.statusImovel">
+                            <option [ngValue]="undefined" disabled>Selecione o status</option>
+                            <option *ngFor="let opcao of opcoesStatus" [ngValue]="opcao.value">
+                                {{ opcao.label }}
+                            </option>
+                        </select>
+                    </div>
+            </div>
+
             <div class="form-group">
                 <label for="txtCondominio">Condominio</label>
                 <select class="form-select" [(ngModel)]="imovel.condominio" [compareWith]="comparaCondominios">
                     <option *ngFor="let umCondominio of listaCondominio" [ngValue]="umCondominio">{{umCondominio.nome}}</option>
                 </select>
-            </div> 
+            </div>
+
+            <div class="form-group">
+                <label for="txtProprietario">Proprietário</label>
+                <select class="form-select" [(ngModel)]="imovel.proprietario" [compareWith]="comparaPessoas">
+                    <option *ngFor="let umProprietario of listaProprietarios" [ngValue]="umProprietario">
+                        {{umProprietario.nome}}
+                    </option>
+                </select>
+            </div>
 
         </div>
         <button (click)="salvar()"

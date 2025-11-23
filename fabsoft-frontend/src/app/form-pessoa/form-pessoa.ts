@@ -17,6 +17,11 @@ import { Router,ActivatedRoute, ParamMap } from '@angular/router';
 export class FormPessoa {
 
   pessoa:Pessoa = new Pessoa();
+  
+  opcoesTipoPessoa = [
+    { label: 'Proprietário', value: 'PROPRIETARIO' },
+    { label: 'Locatário', value: 'LOCATARIO' }
+  ];
 
   constructor(
     private pessoaService: PessoaService,

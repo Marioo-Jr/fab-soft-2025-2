@@ -4,7 +4,7 @@ export class Condominio {
     nome:string;
     endereco:string;
     cnpj:string;
-
+    sindicoId:number;
 }
 
 // private long id;

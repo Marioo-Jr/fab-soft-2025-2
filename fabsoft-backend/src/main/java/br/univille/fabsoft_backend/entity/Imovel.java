@@ -26,6 +26,7 @@ public class Imovel {
     private Integer qtdeBanheiros;
     private Integer vagaGaragem;
     
+
     @Enumerated(EnumType.STRING)
     private StatusImovel statusImovel;
     
@@ -63,7 +64,7 @@ public class Imovel {
     }
 
 
-
+    
 
 
     public long getId() {

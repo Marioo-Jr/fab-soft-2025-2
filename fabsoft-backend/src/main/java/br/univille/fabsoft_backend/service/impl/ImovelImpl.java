@@ -114,10 +114,12 @@ public class ImovelImpl implements ImovelService {
         
         if (imovel.getCondominio() != null) {
             dto.setCondominioId(imovel.getCondominio().getId());
+            dto.setNomeCondominio(imovel.getCondominio().getNome());
         }
 
         if (imovel.getProprietario() != null) {
             dto.setProprietarioId(imovel.getProprietario().getId());
+            dto.setNomeProprietario(imovel.getProprietario().getNome());
         }
 
         return dto;

@@ -46,6 +46,7 @@ h1, h2, h3, h4, h5, h6 {
     vertical-align: middle;
 }
 
+
 /* Botões refinados */
 .btn {
     border-radius: 6px;
@@ -67,3 +68,29 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 80vh;
     padding-bottom: 3rem;
 }
+
+.form-group {
+    margin-bottom: 1.5rem; 
+}
+
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+    display: block; 
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Garante que a última coluna (geralmente a de botões) não quebre linha */
+.table tbody td:last-child {
+    white-space: nowrap;
+    width: 1%; /* Força a coluna a ter o menor tamanho possível sem quebrar */
+}
+

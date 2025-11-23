@@ -1,5 +1,5 @@
 <main class="container">
-    <h2>Pessoa</h2>
+    <h2>Condomínio</h2>
     <div class="card">
         <div class="card-body">
             
@@ -27,9 +27,19 @@
                 id = "txtCNPJ">
             </div>
 
-        </div>
+            <div class="form-group">
+                <label for="sindicoId">Síndico (Pessoa)</label>
+                <select id="sindicoId"
+                    name="sindicoId"
+                    [(ngModel)]="condominio.sindicoId"
+                    class="form-control">
+                    <option *ngFor="let pessoa of listaDePessoas" [ngValue]="pessoa.id">
+                        {{ pessoa.nome }} (CPF: {{ pessoa.cpf }})
+                    </option>
+                </select>
+            </div>
+            </div>
         <button (click)="salvar()"
         class="btn btn-primary">Salvar</button>
     </div>
 </main>
-

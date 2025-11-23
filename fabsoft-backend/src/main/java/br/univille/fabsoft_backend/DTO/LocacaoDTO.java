@@ -78,9 +78,4 @@ public class LocacaoDTO {
     public void setStatusLocacao(StatusLocacao statusLocacao) {
         this.statusLocacao = statusLocacao;
     }
-
-    
-    
-    
-
 }

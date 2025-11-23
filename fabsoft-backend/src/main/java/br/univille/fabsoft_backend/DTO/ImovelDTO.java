@@ -13,6 +13,9 @@ public class ImovelDTO {
     private StatusImovel statusImovel;
     private Long condominioId;
     private Long proprietarioId;
+    private String nomeCondominio;
+    private String nomeProprietario;
+   
 
     public ImovelDTO(){}
 
@@ -28,6 +31,9 @@ public class ImovelDTO {
         this.condominioId = condominioId;
         this.proprietarioId = proprietarioId;
     }
+
+    
+    
 
     public Long getId() {
         return id;
@@ -100,6 +106,22 @@ public class ImovelDTO {
 
     public void setVagaGaragem(Integer vagaGaragem) {
         this.vagaGaragem = vagaGaragem;
+    }
+
+    public String getNomeCondominio() {
+        return nomeCondominio;
+    }
+
+    public void setNomeCondominio(String nomeCondominio) {
+        this.nomeCondominio = nomeCondominio;
+    }
+
+    public String getNomeProprietario() {
+        return nomeProprietario;
+    }
+
+    public void setNomeProprietario(String nomeProprietario) {
+        this.nomeProprietario = nomeProprietario;
     }
 
     

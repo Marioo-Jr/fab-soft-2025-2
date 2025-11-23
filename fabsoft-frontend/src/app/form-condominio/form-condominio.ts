@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
+import { Pessoa } from '../model/pessoa';
+import { PessoaService } from '../service/pessoa.service';
 
 
 @Component({
@@ -19,12 +19,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormCondominio {
 
   condominio: Condominio = new Condominio();
+  listaDePessoas: Pessoa[] = [];
 
   constructor(
     private condominioService: CondominioService,
+    private pessoaService: PessoaService,
     private router:Router,
     private activateRoute:ActivatedRoute
   ){
+
+    
+
     let id = this.activateRoute.snapshot.paramMap.get('id');
     if(id){
       this.condominioService.getCondominioById(id)
@@ -32,8 +37,17 @@ export class FormCondominio {
           this.condominio = res
         })
       }
+      
     }
 
+    ngOnInit(){
+      this.pessoaService.getPessoas().subscribe(page => {
+          this.listaDePessoas = page.content;
+      });
+  }
+  comparaPessoas (obj1: Pessoa, obj2: Pessoa): boolean {
+      return obj1 && obj2 ? obj1.id === obj2.id : obj1 === obj2;
+  }
 
   salvar(){
     this.condominioService.saveCondominio(this.condominio)

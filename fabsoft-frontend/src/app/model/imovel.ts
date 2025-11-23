@@ -1,4 +1,5 @@
 import { Condominio } from "./condominio";
+import { Pessoa } from "./pessoa";
 
 export class Imovel {
 
@@ -10,6 +11,9 @@ export class Imovel {
     vagaGaragem:number;
     statusImovel:string
     condominio:Condominio;
+    nomeCondominio: string;
+    nomeProprietario:string;
+    proprietario: Pessoa;
 }
 
 // private Long id;

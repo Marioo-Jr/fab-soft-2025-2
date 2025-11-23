@@ -11,4 +11,5 @@ public class Proprietario extends Pessoa {
     @JoinColumn(name = "proprietario_id")
     private Proprietario proprietario;
 
+    
 }

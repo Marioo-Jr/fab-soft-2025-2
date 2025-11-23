@@ -8,8 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.univille.fabsoft_backend.DTO.LocacaoDTO;
+import br.univille.fabsoft_backend.entity.Imovel;
 import br.univille.fabsoft_backend.entity.Locacao;
+import br.univille.fabsoft_backend.entity.Pessoa;
+import br.univille.fabsoft_backend.repository.ImovelRepository;
 import br.univille.fabsoft_backend.repository.LocacaoRepository;
+import br.univille.fabsoft_backend.repository.PessoaRepository;
 import br.univille.fabsoft_backend.service.LocacaoService;
 import br.univille.fabsoft_backend.service.exeptions.DatabaseException;
 import br.univille.fabsoft_backend.service.exeptions.ResourceNotFoundException;
@@ -21,7 +25,10 @@ public class LocacaoImpl implements LocacaoService{
 
     @Autowired
     private LocacaoRepository locacaoRepository;
-
+    @Autowired
+    private PessoaRepository pessoaRepository;
+    @Autowired
+    private ImovelRepository imovelRepository;
 
     @Override
     @Transactional
@@ -76,32 +83,47 @@ public class LocacaoImpl implements LocacaoService{
 
 
 
-    private LocacaoDTO toDTO (Locacao locacao){
+    private LocacaoDTO toDTO(Locacao locacao) {
         LocacaoDTO dto = new LocacaoDTO();
-
         dto.setId(locacao.getId());
         dto.setInicioLocacao(locacao.getInicioLocacao());
         dto.setFimLocacao(locacao.getFimLocacao());
         dto.setValorAluguel(locacao.getValorAluguel());
         dto.setStatusLocacao(locacao.getStatusLocacao());
 
+    
+        if (locacao.getImovel() != null) {
+            dto.setImovelId(locacao.getImovel().getId());
+        }
+        if (locacao.getLocatario() != null) {
+            dto.setLocatarioId(locacao.getLocatario().getId());
+        }
+
         return dto;
-
-
     }
 
-    private Locacao toEntity (LocacaoDTO dto){
-
+    private Locacao toEntity(LocacaoDTO dto) {
         Locacao locacao = new Locacao();
-
         locacao.setId(dto.getId());
-        locacao.setFimLocacao(dto.getFimLocacao());
         locacao.setInicioLocacao(dto.getInicioLocacao());
-        locacao.setStatusLocacao(dto.getStatusLocacao());
+        locacao.setFimLocacao(dto.getFimLocacao());
         locacao.setValorAluguel(dto.getValorAluguel());
+        locacao.setStatusLocacao(dto.getStatusLocacao());
+
+        // BUSCAR E SETAR OS OBJETOS
+        if (dto.getImovelId() != null) {
+            Imovel imovel = imovelRepository.findById(dto.getImovelId())
+                .orElseThrow(() -> new ResourceNotFoundException("Imovel não encontrado"));
+            locacao.setImovel(imovel);
+        }
+
+        if (dto.getLocatarioId() != null) {
+            Pessoa locatario = pessoaRepository.findById(dto.getLocatarioId())
+                .orElseThrow(() -> new ResourceNotFoundException("Locatario não encontrado"));
+            locacao.setLocatario(locatario);
+        }
 
         return locacao;
-
     }
 
 
