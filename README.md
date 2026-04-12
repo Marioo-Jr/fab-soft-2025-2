@@ -1,124 +1,135 @@
 
-# fab-soft-2025
+# FabSoft — Sistema de Gestão de Condomínios
 
-Nome: Mario Sergio Minas Junior
+> Aplicação full-stack para gerenciamento completo de condomínios, desenvolvida com **Spring Boot** no backend e **Angular** no frontend.
 
+---
 
-## Propostas
+## Visão Geral
 
-Lexical notebook.
+O FabSoft é um sistema de administração condominial full-stack desenvolvido para centralizar e simplificar a gestão de condomínios residenciais. A aplicação permite o controle completo de moradores (proprietários e locatários), unidades habitacionais, contratos de locação e áreas comuns como salões de festas e churrasqueiras.
+No backend, a API REST foi construída com Spring Boot, seguindo uma arquitetura em camadas com separação clara entre controllers, services e repositórios. A persistência é feita via Spring Data JPA, com suporte a banco H2 para desenvolvimento e MariaDB para produção. O banco é populado automaticamente com dados de exemplo na inicialização, facilitando testes e demonstrações.
+No frontend, a interface foi desenvolvida em Angular 20 com Bootstrap 5, oferecendo uma experiência responsiva e fluida para cadastro, edição e exclusão de registros em todos os módulos. A comunicação com a API é feita de forma reativa via RxJS e HttpClient.
+---
 
-	- Conexao entre os alunos
-		- os alunos vao poder compartilhar os flashcards uns com os outros.
-		- quando o professor criar um turma, ele vai poder adicionar os alunos na Turma.	
-		- quando o professor adicionar vocabularios novos, os alunos vao receber o vocab novo.
-
-	- Correcao
-		- O app precisa ter algum tipo de correcao, para evitar que os alunos adicionem conteudos escritos errados.
-	- Busca por vocabularios
-		- o app permoite que o usuario tenha algumas opcoes de organizacao
-			- Por pastas
-			- Por Tags
-			- Por Nome
-
-	- Visualizar edicao
-		- permite que o usuario crie, edite ou exclua qualquer conteudo adicionado.
-
-	- Modos de estudos
-		- Metodo quiz
-		- Metodo repeticao espacada
-  ### Historias 12/08.
-
- - Como usuario eu gostaria de compartilhar meus vocabularios com outros alunos.
- - Como usuario eu gostaria poder fazer flash cards com o vocabulario novo.
- - como usuario eu gostaria de poder ter diferentes formas de estudar o vocabulario
- - como usuario eu gostaria de poder ver o vocabulario que meu colega adicionou
- - como usuario eu gostaria de poder adicionar meus amigos na plataforma
- - como usuario eu gostaria de poder criar grupos na plataforma.
- - como usuario eu gostaria de poder criar pastas na plataforma.
+<img width="1914" height="905" alt="homePage" src="https://github.com/user-attachments/assets/2da7db29-a0b6-4a6d-a934-83234e9a7b46" />
+<img width="1900" height="850" alt="tabelaPessoa" src="https://github.com/user-attachments/assets/e8bc24cb-5a32-461d-9c1d-2a46fdbf05bc" />
+<img width="1907" height="892" alt="TabelaEspaco" src="https://github.com/user-attachments/assets/f0ce3f2b-6f4a-4ec2-9a26-171d347db244" />
+<img width="1914" height="894" alt="TabelaImoveis" src="https://github.com/user-attachments/assets/c220d5cd-c640-4ebe-aff4-0d79f271bc06" />
+<img width="1911" height="892" alt="TabelaLocao" src="https://github.com/user-attachments/assets/fc99de41-1c2e-4a4b-87c4-ed293e134763" />
 
 
-##
-Sistema de Controle de Condomínios 
+---
 
-- Cadastro de Moradores
+##  Funcionalidades
 
-	Inserir, editar e excluir moradores.
+| Módulo | Operações |
+|---|---|
+|  **Condomínios** | Cadastrar, editar, excluir, associar síndico |
+|  **Imóveis** | Gerenciar unidades por bloco, status e proprietário |
+|  **Pessoas** | Cadastro de proprietários e locatários |
+|  **Espaços** | Áreas comuns com capacidade e valor de reserva |
+|  **Locações** | Controle de contratos de aluguel com status |
 
-- Cadastro de Áreas Comuns
+---
 
-	Criar e gerenciar áreas comuns (salão de festas, churrasqueira, academia, etc.).
+##  Stack Tecnológica
 
-- Reserva de Áreas Comuns
+### Backend
+- **Java 21**
+- **Spring Boot 3.5.5**
+- **Spring Data JPA / Hibernate**
+- **H2 Database** (perfil `dev`) — banco em memória, zero configuração
+- **MariaDB** (perfil produção)
+- **SpringDoc OpenAPI** (Swagger UI em `/swagger-ui.html`)
+- **Docker** (Dockerfile multi-stage incluído)
 
-	Moradores podem solicitar reserva de áreas disponíveis em datas e horários específicos.
+### Frontend
+- **Angular 20**
+- **TypeScript 5.9**
+- **Bootstrap 5.3**
+- **RxJS** para comunicação reativa com a API
 
-	Sistema bloqueia horários já reservados.
+---
 
-- Registro de Ocorrências
+## Como Rodar o Projeto
 
-	Moradores registram ocorrências (barulho, manutenção, segurança), com título, descrição e fotos opcionais.
+### Pré-requisitos
 
-	Síndico e/ou administradores podem atualizar status da ocorrência (pendente, em andamento, resolvida).
+- **Java 21+** — [Download Adoptium](https://adoptium.net/pt-BR)
+- **Maven 3.9+** — ou use o `mvnw` incluso no projeto
+- **Node.js 20+** e **npm** — [Download Node.js](https://nodejs.org)
+- **Angular CLI** — instalado automaticamente via `npm`
 
+---
 
-- Histórico de Reservas e Ocorrências
+### 1. Clonar o repositório
 
-	Morador pode consultar tudo o que já registrou ou reservou.
+```bash
+git clone https://github.com/seu-usuario/fab-soft-2025.git
+cd fab-soft-2025
+```
 
-- Autenticação de Usuários
+---
 
-	Login separado para moradores e administradores (com permissões diferentes).
-
-
-- Controle de Funcionários //
-
-	Cadastro e escalas de porteiros, zeladores, faxineiros, etc.
-
-- Gestão de Manutenção Preventiva // 
-
-	Agenda para manutenção de elevadores, bombas d’água, portões, etc.
-
-- Relatórios e Estatísticas //
-
-	Relatório de reservas, ocorrências mais comuns, inadimplência, etc.
-
-### Historias 
-
-- Como usuario eu gostaria de poder entrar em contato com o responsavel de maneira facil e rapida
-- como usuario eu gostaria de poder agendar o uso de certos locais de forma facil e rapida
-- como usuario eu gostaria de receber notificacoes de coisas importantes
-- como usuario eu gostaria de inserir deletar ou editar os dados de um usuario.
-- como usuario eu gostaria de ver um historico de lugares que eu aluguei.
-- como usuario eu gostaria de poder registrar ocorrencias.
-
-
-
+### 2. Rodar o Backend
 
 
-## Aula 05/08
+```bash
+cd fabsoft-backend
+./mvnw spring-boot:run
+```
 
-- JRE - Java Runtime Enviroment
-  - Ambiente mínimo para executar um programa Java
-  - JVM - Java Virtual Machine (java.exe ou javaw.exe)
+> **Windows:** use `mvnw.cmd spring-boot:run`
 
-- JDK - Java Development Kit
-  - [Adoptium JDK](https://adoptium.net/pt-BR)
-  - Ambiente de DESENVOLVIMENTO (javac.exe) compilador
+A API ficará disponível em: **`http://localhost:8080`**
 
-- COMPILAÇÃO
+---
 
-	- Escreve um programa em java (arquivo.java)
-	- Compilação arquivo.java -> javac.exe -> bytecode arquivo.class
-	- EXECUÇÃO 3 Passar .class -> java.exe (JVM) -> ling máquina
+### 3. Rodar o Frontend
 
-- VSCode
+Em um **novo terminal**:
 
-VSCode
-	- Java Extension Packava.exe (JVM) -> ling máquina
-#
+```bash
+cd fabsoft-frontend
+npm install
+npm start
+```
 
-### aula  20/08
+O frontend ficará disponível em: **`http://localhost:4200`**
+
+---
+
+### 4. Acessar a Aplicação
+
+Abra o navegador em **`http://localhost:4200`** e explore os módulos pelo menu de navegação ou pelo painel inicial.
+
+---
+
+
+##  Arquitetura do Backend
+
+O backend segue uma arquitetura em camadas bem definida:
+
+```
+Controller  →  Service (Interface + Impl)  →  Repository (JPA)  →  Entity
+     ↕                                                                  ↕
+    DTO  ←────────────────────────────────────────────────────── Database
+```
+
+**Destaques de design:**
+- **DTOs** para desacoplar a API da camada de persistência
+- **Herança JPA** (`JOINED`) para `Pessoa` → `Proprietario` / `Locatario`
+- **Factory Pattern** (`PessoaFactory`) para instanciar o tipo correto de pessoa
+- **Tratamento de erros** centralizado via `@ControllerAdvice`
+- **CORS** configurado globalmente para desenvolvimento local
+
+
+---
+
+Algumas imagens do projeto
+
+
 
 ```mermaid
 ---
