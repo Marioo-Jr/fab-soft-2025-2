@@ -10,13 +10,22 @@
 O FabSoft é um sistema de administração condominial full-stack desenvolvido para centralizar e simplificar a gestão de condomínios residenciais. A aplicação permite o controle completo de moradores (proprietários e locatários), unidades habitacionais, contratos de locação e áreas comuns como salões de festas e churrasqueiras.
 No backend, a API REST foi construída com Spring Boot, seguindo uma arquitetura em camadas com separação clara entre controllers, services e repositórios. A persistência é feita via Spring Data JPA, com suporte a banco H2 para desenvolvimento e MariaDB para produção. O banco é populado automaticamente com dados de exemplo na inicialização, facilitando testes e demonstrações.
 No frontend, a interface foi desenvolvida em Angular 20 com Bootstrap 5, oferecendo uma experiência responsiva e fluida para cadastro, edição e exclusão de registros em todos os módulos. A comunicação com a API é feita de forma reativa via RxJS e HttpClient.
----
-
+##
+## Pagina inicial
 <img width="1914" height="905" alt="homePage" src="https://github.com/user-attachments/assets/2da7db29-a0b6-4a6d-a934-83234e9a7b46" />
+
+##
 <img width="1900" height="850" alt="tabelaPessoa" src="https://github.com/user-attachments/assets/e8bc24cb-5a32-461d-9c1d-2a46fdbf05bc" />
+
+##
 <img width="1907" height="892" alt="TabelaEspaco" src="https://github.com/user-attachments/assets/f0ce3f2b-6f4a-4ec2-9a26-171d347db244" />
+
+##
 <img width="1914" height="894" alt="TabelaImoveis" src="https://github.com/user-attachments/assets/c220d5cd-c640-4ebe-aff4-0d79f271bc06" />
+
+##
 <img width="1911" height="892" alt="TabelaLocao" src="https://github.com/user-attachments/assets/fc99de41-1c2e-4a4b-87c4-ed293e134763" />
+
 
 
 ---
@@ -127,8 +136,7 @@ Controller  →  Service (Interface + Impl)  →  Repository (JPA)  →  Entity
 
 ---
 
-Algumas imagens do projeto
-
+## Relacionamento entre as tabelas
 
 
 ```mermaid
